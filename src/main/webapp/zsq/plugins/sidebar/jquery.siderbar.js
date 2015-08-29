@@ -1,4 +1,7 @@
-//侧边栏导航,基于bootstrapDOM扩展, 依赖bootstrap3的响应式插件
+/**
+ * 侧边栏导航,基于bootstrapDOM扩展, 依赖bootstrap3的响应式插件, 只支持常用的slidebar用法
+ * 标准的DOM 结构 ul > li > ul > li* > a 只支持2级结构
+ */
 !function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery','bootstrap','css!./jquery.sidebar'], factory);
@@ -10,6 +13,7 @@
  
   // Default options
   var defaults = {
+	 'model':'single',//'single':''mutilp'
 	 'data':[{
 		 'icon':'',//图标class
 		 'name':'',
@@ -48,10 +52,9 @@
     },
     //递归函数 循环创建信息
     _initDomItem:function(item){
-    	 var li = document.createElement('li');
-       var dd = '<i class="fa fa-lg fa-fw fa-code"></i>';
+       
        if(item.icon){
-
+    	   
        }
     },
     open:function(){

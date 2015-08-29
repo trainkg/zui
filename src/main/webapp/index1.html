@@ -11,6 +11,7 @@
 <link href="dist/themes/css/style.css" rel="stylesheet">
 <link href="dist/themes/blue/core.css" id="dist-link-theme" rel="stylesheet">
 <link href="dist/themes/css/FA/css/font-awesome.min.css" rel="stylesheet">
+<link href="./zsq/animate.css" rel="stylesheet">
 <link href="doc.css" rel="stylesheet">
 <!-- bootstrap - css -->
 <!--[if lte IE 7]>
@@ -38,10 +39,11 @@ html,body {
 }
 
 .center,.east,.west,.north,.south {
-	background-color: rgb(220, 220, 220);
+	background-color: rgb(200,200,200);;
 	/* border: 1px solid rgb(200,200,200); */
 	display: inline-block;
 }
+.center{min-width:600px;}
 
 .west,.east {
 	width: 200px;
@@ -56,8 +58,11 @@ html,body {
 }
 
 .ui-resizable-helper-west {
-	border-right: 3px solid green;
+	border-right: 6px solid green;
 }
+
+.nav > li > ul{padding-left: 28px;}
+.nav > li > ul > li > ul{padding-left: 58px;}
 </style>
 <!-- 使用B-gui中的一些信息 -->
 <!-- bootstrap plugins -->
@@ -98,23 +103,23 @@ html,body {
 
 				//布局原始上不要参杂其他CSS样式定义,容易造成BUG
 				//bootstrap 和 jquery UI的 resizable 冲突  或者说 jquery ui有BUG 放弃拉动效果 或者转向定制效果
-				/* $('.west').resizable({
+				$('.west').resizable({
 					handles: 'e',
 					stop: layout,
 					minWidth:200,
 					maxWidth:500,
 					helper: 'ui-resizable-helper-west'
-				}); */
+				}); 
 
 				$.when(layout()).then(function() {
 					container.process('complete');
-					container.show();
+					//container.show();
 				})
 				$(window).resize(layout);
 			})
 </script>
 </head>
-<body id="bjui-window" class="layout" style="display: none">
+<body id="bjui-window" class="layout animated flipInY" style="display: none">
 	<div class="north">
 		<header id="bjui-header">
 			<div class="bjui-navbar-header">
@@ -239,29 +244,29 @@ html,body {
 								<ul class="menu-items" data-faicon="star-o" data-tit="框架介绍">
 									<li><a href="doc/base/filelist.html" data-options="{id:'doc-file', faicon:'caret-right'}">文件详解</a></li>
 									<li><a href="doc/base/structure.html" data-options="{id:'doc-structure', faicon:'caret-right'}">页面结构</a></li>
-									<li><a href="doc/base/init.html" data-options="{id:'doc-init', faicon:'caret-right'}">框架初始化</a></li>
-									<li><a href="doc/base/hnav.html" data-options="{id:'doc-hnav', faicon:'caret-right'}">横向导航菜单</a></li>
-									<li><a href="doc/base/navtab.html" data-options="{id:'doc-navtab', faicon:'caret-right'}">标签工作区(navtab)</a></li>
-									<li><a href="doc/base/dialog.html" data-options="{id:'doc-dialog', faicon:'caret-right'}">弹窗工作区(dialog)</a></li>
+									<li><a href="doc/base/init.html" >框架初始化</a></li>
+									<li><a href="doc/base/hnav.html" >横向导航菜单</a></li>
+									<li><a href="doc/base/navtab.html" >标签工作区(navtab)</a></li>
+									<li><a href="doc/base/dialog.html" >弹窗工作区(dialog)</a></li>
 									<li><a href="doc/base/idname.html" data-options="{id:'doc-idname', faicon:'caret-right'}">元素ID命名规范</a></li>
-									<li><a href="doc/base/data.html" data-options="{id:'doc-data', faicon:'caret-right'}">data属性</a></li>
-									<li><a href="doc/base/api.html" data-options="{id:'doc-api', faicon:'caret-right'}">jQuery API调用</a></li>
-									<li><a href="doc/base/event.html" data-options="{id:'doc-event', faicon:'caret-right'}">事件</a></li>
-									<li><a href="doc/base/url.html" data-options="{id:'doc-url', faicon:'caret-right'}">URL动态赋值</a></li>
-									<li><a href="doc/theme/color.html" data-options="{id:'doc-theme', faicon:'caret-right'}">颜色值</a></li>
+									<li><a href="doc/base/data.html" >data属性</a></li>
+									<li><a href="doc/base/api.html" >jQuery API调用</a></li>
+									<li><a href="doc/base/event.html" >事件</a></li>
+									<li><a href="doc/base/url.html" >URL动态赋值</a></li>
+									<li><a href="doc/theme/color.html" >颜色值</a></li>
 								</ul>
 								<ul class="menu-items" data-faicon="th" data-tit="框架组件">
-									<li><a href="doc/navtab/navtab.html" data-options="{id:'doc-navtab', faicon:'caret-right'}">标签navtab</a></li>
-									<li><a href="doc/navtab/navtab-op.html" data-options="{id:'doc-navtab', faicon:'caret-right'}">navtab参数</a></li>
-									<li><a href="doc/dialog/dialog.html" data-options="{id:'doc-dialog', faicon:'caret-right'}">弹窗dialog</a></li>
-									<li><a href="doc/dialog/dialog-op.html" data-options="{id:'doc-dialog', faicon:'caret-right'}">dialog参数</a></li>
-									<li><a href="doc/alertmsg/alertmsg.html" data-options="{id:'doc-alertmsg', faicon:'caret-right'}">信息提示alertmsg</a></li>
-									<li><a href="doc/form/datepicker.html" data-options="{id:'doc-datepicker', faicon:'caret-right'}">日期选择器</a></li>
-									<li><a href="doc/form/spinner.html" data-options="{id:'doc-spinner', faicon:'caret-right'}">微调器</a></li>
-									<li><a href="doc/form/lookup.html" data-options="{id:'doc-lookup', faicon:'caret-right'}">查找带回</a></li>
-									<li><a href="doc/form/tags.html" data-options="{id:'doc-tags', faicon:'caret-right'}">自动完成标签</a></li>
-									<li><a href="doc/form/upload.html" data-options="{id:'doc-upload', faicon:'caret-right'}">Ajax上传组件</a></li>
-									<li><a href="doc/other/contextmenu.html" data-options="{id:'doc-contextmenu', faicon:'caret-right'}">右键菜单</a></li>
+									<li><a href="doc/navtab/navtab.html" >标签navtab</a></li>
+									<li><a href="doc/navtab/navtab-op.html" >navtab参数</a></li>
+									<li><a href="doc/dialog/dialog.html" >弹窗dialog</a></li>
+									<li><a href="doc/dialog/dialog-op.html" >dialog参数</a></li>
+									<li><a href="doc/alertmsg/alertmsg.html" >信息提示alertmsg</a></li>
+									<li><a href="doc/form/datepicker.html" >日期选择器</a></li>
+									<li><a href="doc/form/spinner.html" >微调器</a></li>
+									<li><a href="doc/form/lookup.html" >查找带回</a></li>
+									<li><a href="doc/form/tags.html" >自动完成标签</a></li>
+									<li><a href="doc/form/upload.html" >Ajax上传组件</a></li>
+									<li><a href="doc/other/contextmenu.html" >右键菜单</a></li>
 								</ul>
 								<ul class="menu-items" data-faicon="spinner" data-tit="Ajax">
 									<li><a href="doc/ajax/callback.html" data-options="{id:'doc-callback', faicon:'caret-right'}">回调函数</a></li>
@@ -315,37 +320,284 @@ html,body {
 			</div>
 		</header>
 	</div>
-	<div class="center">中间</div>
-	<div class="west">
-		<ul class='nav nav-pills nav-stacked'>
-			<li>
-				<a href="#" title="Smart UI"><i class="fa fa-lg fa-fw fa-code"></i> 
-					<span class="menu-item-parent">Smart UI</span>
-					<b class="collapse-sign"><em class="fa fa-plus-square-o"></em>
-					</b>
-				</a>
-				<ul class="nav">
-					<li>
-						<a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-						  Link with href
-						</a>
-						<ul class="collapse nav" id="collapseExample">
-							<li><a href="ajax/smartui-alert.php"> Alerts</a></li>
-							<li><a href="ajax/smartui-progress.php"> Progress</a></li>
-						</ul>
-					</li>
-					<li><a href="ajax/smartui-carousel.php"> Carousel</a></li>
-					<li><a href="ajax/smartui-tab.php"> Tab</a></li>
-					<li><a href="ajax/smartui-accordion.php"> Accordion</a></li>
-					<li><a href="ajax/smartui-widget.php"> Widget</a></li>
-					<li><a href="ajax/smartui-datatable.php"> DataTable</a></li>
-					<li><a href="ajax/smartui-button.php"> Button</a></li>
-					<li><a href="ajax/smartui-form.php"> Smart Form</a></li>
-				</ul>
-			</li>
-		</ul>
+	<div class="center">
+		<div id="bjui-navtab" class="tabsPage">
+            <div class="tabsPageHeader">
+                <div class="tabsPageHeaderContent">
+                    <ul class="navtab-tab nav nav-tabs">
+                        <li data-url="index_layout.html" data-faicon="home"><a href="javascript:;"><span><i class="fa fa-home"></i> #maintab#</span></a></li>
+                    </ul>
+                </div>
+                <div class="tabsLeft"><i class="fa fa-angle-double-left"></i></div>
+                <div class="tabsRight"><i class="fa fa-angle-double-right"></i></div>
+                <div class="tabsMore"><i class="fa fa-angle-double-down"></i></div>
+            </div>
+            <ul class="tabsMoreList">
+                <li><a href="javascript:;">#maintab#</a></li>
+            </ul>
+            <div class="navtab-panel tabsPageContent">
+                <div class="navtabPage unitBox">
+                    <div class="bjui-pageContent" style="background:#FFF;">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
-	<!-- <div class="east">
+	
+	
+	<div class="west">
+		<div class="panel-group panel-main collapse in"
+			data-toggle="accordion" id="bjui-accordionmenu" aria-multiselectable="true">
+			<div class="panel panel-default collapse in">
+				<div class="panel-heading active">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse0" class=""><i class="fa fa-star-o"></i>&nbsp;框架介绍<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse0" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="star-o" data-tit="框架介绍">
+							<li class="active switch"><a href="doc/base/filelist.html"
+								data-options="{id:'doc-file', faicon:'caret-right'}"
+								title="文件详解"><i class="fa fa-caret-right"></i>文件详解</a></li>
+							<li><a href="doc/base/structure.html"
+								data-options="{id:'doc-structure', faicon:'caret-right'}"
+								title="页面结构"><i class="fa fa-caret-right"></i>页面结构</a></li>
+							<li><a href="doc/base/init.html"
+								
+								title="框架初始化"><i class="fa fa-caret-right"></i>框架初始化</a></li>
+							<li><a href="doc/base/hnav.html"
+								
+								title="横向导航菜单"><i class="fa fa-caret-right"></i>横向导航菜单</a></li>
+							<li><a href="doc/base/navtab.html"
+								
+								title="标签工作区(navtab)"><i class="fa fa-caret-right"></i>标签工作区(navtab)</a></li>
+							<li><a href="doc/base/dialog.html"
+								
+								title="弹窗工作区(dialog)"><i class="fa fa-caret-right"></i>弹窗工作区(dialog)</a></li>
+							<li><a href="doc/base/idname.html"
+								data-options="{id:'doc-idname', faicon:'caret-right'}"
+								title="元素ID命名规范"><i class="fa fa-caret-right"></i>元素ID命名规范</a></li>
+							<li><a href="doc/base/data.html"
+								
+								title="data属性"><i class="fa fa-caret-right"></i>data属性</a></li>
+							<li><a href="doc/base/api.html"
+								
+								title="jQuery API调用"><i class="fa fa-caret-right"></i>jQuery
+									API调用</a></li>
+							<li><a href="doc/base/event.html"
+								 title="事件"><i
+									class="fa fa-caret-right"></i>事件</a></li>
+							<li><a href="doc/base/url.html"
+								
+								title="URL动态赋值"><i class="fa fa-caret-right"></i>URL动态赋值</a></li>
+							<li><a href="doc/theme/color.html"
+								
+								title="颜色值"><i class="fa fa-caret-right"></i>颜色值</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse1" class="collapsed"><i class="fa fa-th"></i>&nbsp;框架组件<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse1" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="th" data-tit="框架组件">
+							<li><a href="doc/navtab/navtab.html"
+								
+								title="标签navtab"><i class="fa fa-caret-right"></i>标签navtab</a></li>
+							<li><a href="doc/navtab/navtab-op.html"
+								
+								title="navtab参数"><i class="fa fa-caret-right"></i>navtab参数</a></li>
+							<li><a href="doc/dialog/dialog.html"
+								
+								title="弹窗dialog"><i class="fa fa-caret-right"></i>弹窗dialog</a></li>
+							<li><a href="doc/dialog/dialog-op.html"
+								
+								title="dialog参数"><i class="fa fa-caret-right"></i>dialog参数</a></li>
+							<li><a href="doc/alertmsg/alertmsg.html"
+								
+								title="信息提示alertmsg"><i class="fa fa-caret-right"></i>信息提示alertmsg</a></li>
+							<li><a href="doc/form/datepicker.html"
+								
+								title="日期选择器"><i class="fa fa-caret-right"></i>日期选择器</a></li>
+							<li><a href="doc/form/spinner.html"
+								
+								title="微调器"><i class="fa fa-caret-right"></i>微调器</a></li>
+							<li><a href="doc/form/lookup.html"
+								
+								title="查找带回"><i class="fa fa-caret-right"></i>查找带回</a></li>
+							<li><a href="doc/form/tags.html"
+								
+								title="自动完成标签"><i class="fa fa-caret-right"></i>自动完成标签</a></li>
+							<li><a href="doc/form/upload.html"
+								
+								title="Ajax上传组件"><i class="fa fa-caret-right"></i>Ajax上传组件</a></li>
+							<li><a href="doc/other/contextmenu.html"
+								
+								title="右键菜单"><i class="fa fa-caret-right"></i>右键菜单</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse2" class="collapsed"><i
+							class="fa fa-spinner"></i>&nbsp;Ajax<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse2" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="spinner" data-tit="Ajax">
+							<li><a href="doc/ajax/callback.html"
+								data-options="{id:'doc-callback', faicon:'caret-right'}"
+								title="回调函数"><i class="fa fa-caret-right"></i>回调函数</a></li>
+							<li><a href="doc/ajax/form.html"
+								data-options="{id:'doc-form-submit', faicon:'caret-right'}"
+								title="提交表单"><i class="fa fa-caret-right"></i>提交表单</a></li>
+							<li><a href="doc/ajax/search.html"
+								data-options="{id:'doc-search', faicon:'caret-right'}"
+								title="搜索表单"><i class="fa fa-caret-right"></i>搜索表单</a></li>
+							<li><a href="doc/ajax/load.html"
+								data-options="{id:'doc-load', faicon:'caret-right'}"
+								title="加载(局部刷新)"><i class="fa fa-caret-right"></i>加载(局部刷新)</a></li>
+							<li><a href="doc/ajax/action.html"
+								data-options="{id:'doc-action', faicon:'caret-right'}"
+								title="执行动作"><i class="fa fa-caret-right"></i>执行动作</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse3" class="collapsed"><i
+							class="fa fa-table"></i>&nbsp;表格相关<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse3" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="table" data-tit="表格相关">
+							<li><a href="doc/table/style.html"
+								data-options="{id:'doc-table-style', faicon:'caret-right'}"
+								title="表格样式"><i class="fa fa-caret-right"></i>表格样式</a></li>
+							<li><a href="doc/table/order.html"
+								data-options="{id:'doc-table-order', faicon:'caret-right'}"
+								title="字段排序"><i class="fa fa-caret-right"></i>字段排序</a></li>
+							<li><a href="doc/table/paging.html"
+								data-options="{id:'doc-table-paging', faicon:'caret-right'}"
+								title="分页组件"><i class="fa fa-caret-right"></i>分页组件</a></li>
+							<li><a href="doc/table/selected.html"
+								data-options="{id:'doc-table-selected', faicon:'caret-right'}"
+								title="行选中操作"><i class="fa fa-caret-right"></i>行选中操作</a></li>
+							<li><a href="doc/table/fixed.html"
+								data-options="{id:'doc-table-fixed', faicon:'caret-right'}"
+								title="固定表头"><i class="fa fa-caret-right"></i>固定表头</a></li>
+							<li><a href="doc/table/edit.html"
+								data-options="{id:'doc-table-edit', faicon:'caret-right'}"
+								title="可编辑表格"><i class="fa fa-caret-right"></i>可编辑表格</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse4" class="collapsed"><i
+							class="fa fa-table"></i>&nbsp;Datagrid<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse4" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="table" data-tit="Datagrid">
+							<li><a href="doc/datagrid/datagrid-demo.html"
+								data-options="{id:'doc-datagrid-demo', faicon:'caret-right'}"
+								title="datagrid示例"><i class="fa fa-caret-right"></i>datagrid示例</a></li>
+							<li><a href="doc/datagrid/datagrid-op.html"
+								data-options="{id:'doc-datagrid-op', faicon:'caret-right'}"
+								title="datagrid参数"><i class="fa fa-caret-right"></i>datagrid参数</a></li>
+							<li><a href="doc/datagrid/datagrid-columns.html"
+								data-options="{id:'doc-datagrid-columns', faicon:'caret-right'}"
+								title="columns参数"><i class="fa fa-caret-right"></i>columns参数</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse5" class="collapsed"><i
+							class="fa fa-image"></i>&nbsp;图形报表(插件)<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse5" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="image" data-tit="图形报表(插件)">
+							<li><a href="doc/chart/highcharts.html"
+								data-options="{id:'', faicon:'caret-right'}"
+								title="Highcharts图表"><i class="fa fa-caret-right"></i>Highcharts图表</a></li>
+							<li><a href="doc/chart/echarts.html"
+								data-options="{id:'', faicon:'caret-right'}" title="ECharts图表"><i
+									class="fa fa-caret-right"></i>ECharts图表</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#bjui-accordionmenu"
+							href="#bjui-collapse6" class="collapsed"><i class="fa fa-bug"></i>&nbsp;其他插件<b><i
+								class="fa fa-angle-down"></i></b></a>
+					</h4>
+				</div>
+				<div id="bjui-collapse6" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul class="menu-items" data-faicon="bug" data-tit="其他插件">
+							<li><a href="doc/plugin/ztree.html"
+								data-options="{id:'doc-ztree', faicon:'caret-right'}"
+								title="zTree"><i class="fa fa-caret-right"></i>zTree</a></li>
+							<li><a href="doc/plugin/checkbox.html"
+								data-options="{id:'doc-icheck', faicon:'caret-right'}"
+								title="复选/单选"><i class="fa fa-caret-right"></i>复选/单选</a></li>
+							<li><a href="doc/plugin/select.html"
+								data-options="{id:'doc-selectpicker', faicon:'caret-right'}"
+								title="下拉选择框"><i class="fa fa-caret-right"></i>下拉选择框</a></li>
+							<li><a href="doc/plugin/validate.html"
+								data-options="{id:'doc-nicevalidator', faicon:'caret-right'}"
+								title="表单验证"><i class="fa fa-caret-right"></i>表单验证</a></li>
+							<li><a href="doc/plugin/kindeditor.html"
+								data-options="{id:'doc-kindeditor', faicon:'caret-right'}"
+								title="KindEditor"><i class="fa fa-caret-right"></i>KindEditor</a></li>
+							<li><a href="doc/plugin/ajaxdownload.html"
+								data-options="{id:'doc-ajaxdownload', faicon:'caret-right'}"
+								title="Ajax Download"><i class="fa fa-caret-right"></i>Ajax
+									Download</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 <!-- <div class="east">
 			East
 		</div> -->
 	<div class="south u-footer">
