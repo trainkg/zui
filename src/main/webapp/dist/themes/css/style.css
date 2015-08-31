@@ -10,10 +10,12 @@ table, caption, tbody, tfoot, thead, tr, th, td{font-family:"Verdana", "Tahoma",
 h1, h2, h3, h4, h5, h6{font-family:"Verdana", "Tahoma", "Lucida Grande", "Microsoft YaHei", "Hiragino Sans GB", sans-serif; line-height:1;}
 *:focus{outline:0 !important;}
 html{height:100%;}
-body{overflow:hidden;}
-ul, ol{margin:0; padding:0; list-style:none;}
+body{overflow:hidden;}/*
+
 fieldset{margin-bottom:10px; padding:5px; border:1px #a3a3a3 solid; border-radius:4px;}
-legend{display:inline-block; margin-left:20px; margin-bottom:5px; padding:0 5px; width:auto; font-size:14px; font-weight:700; line-height:inherit; color:#333333; border:0;}
+legend{display:inline-block; margin-left:20px; margin-bottom:5px; padding:0 5px; width:auto; font-size:14px; font-weight:700; line-height:inherit; color:#333333; border:0;} */
+ul, ol{margin:0; padding:0; list-style:none;}
+
 .red{color:red !important;}
 .orange{color:orange !important;}
 .blue{color:blue !important;}
@@ -219,7 +221,7 @@ td[align=right] input{text-align:right;}
 #bjui-sidebar-s > .collapse > .toggleCollapse{position:absolute; top:50%; left:-2px; display:none; margin-top:-12px; height:24px; border:0;}
 #bjui-sidebar-s > .collapse > .toggleCollapse div{width:100%; height:24px; line-height:1; text-align:center; cursor:pointer;}
 #bjui-sidebar-s > .collapse > .toggleCollapse div i{font-size:20px; font-weight:bold;}
-#bjui-navtab{position:absolute; top:0; left:204px; height:100%;}
+#bjui-navtab{/* position:absolute; top:0; left:204px; */ height:100%;}
 #bjui-splitBar{position:absolute; top:0; left:201px; display:block; width:3px; overflow:hidden; cursor:col-resize; float:left;}
 #bjui-splitBarProxy{position:absolute; top:0; left:201px; z-index:2; display:none; width:1px; overflow:hidden; border-style:solid; border-width:1px; cursor:col-resize; float:left;}
 #bjui-footer{position:absolute; bottom:0; left:0; padding-top:8px; width:100%; height:24px; text-align:center;}
@@ -255,7 +257,7 @@ td[align=right] input{text-align:right;}
 .bjui-pageFooter > .pagination-box > ul > li.jumpto .goto{margin-left:-1px; height:25px; line-height:17px;}
 .bjui-pageHeader li .btn,
 .bjui-pageFooter li .btn{height:25px;}
-.bjui-pageContent{position:absolute; top:0; bottom:0; padding:10px; width:100%; overflow:auto;}
+.bjui-pageContent{/* position:absolute; top:0; bottom:0;  width:100%; */padding:10px; overflow:auto;}
 .bjui-pageContent.tableContent{padding:0;}
 .bjui-pageContent p{line-height:1.5;}
 .bjui-pageFormContent{position:relative; display:block; padding:10px 5px; overflow:auto;}
@@ -293,7 +295,7 @@ td[align=right] input{text-align:right;}
 #bjui-navtab > .tabsMoreList > li{display:block; height:23px; line-height:21px; overflow:hidden;}
 #bjui-navtab > .tabsMoreList > li a{display:block; padding:0 10px; height:21px; white-space:nowrap; line-height:21px;}
 #bjui-navtab > .tabsMoreList > li a:hover{text-decoration:none;}
-#bjui-navtab > .tabsPageContent{position:relative; display:block; overflow:hidden; border-style:solid; border-width:0 1px 1px 1px;}
+#bjui-navtab > .tabsPageContent{/* position:relative;  */display:block; overflow:hidden; border-style:solid; border-width:0 1px 1px 1px;}
 #bjui-navtab > .tabsPageContent > .navtabPage{height:100%; overflow:hidden;}
 /* Dialog */
 .bjui-dialog{position:absolute; display:block; text-align:left; border-radius:3px; box-shadow:0 2px 2px rgba(0, 0, 0, 0.3);}

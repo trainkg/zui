@@ -27,10 +27,10 @@
 <script src="zsq/base.js"></script>
 <style>
 html,body {
-	width: 100%;
-	height: 100%;
+	/* width: 100%;
+	height: 100%; */
 	padding: 0;
-	margin: 0;
+	margin: 0 5px;
 	overflow: hidden;
 }
 
@@ -39,7 +39,7 @@ html,body {
 }
 
 .center,.east,.west,.north,.south {
-	background-color: rgb(200,200,200);;
+	/* background-color: rgb(200,200,200);; */
 	/* border: 1px solid rgb(200,200,200); */
 	display: inline-block;
 }
@@ -72,7 +72,7 @@ html,body {
 <script type="text/javascript">
 	require([ 'jquery', 'bootstrap', 'css!plugins/jqueryui/jquery-ui',
 			'plugins/process/jquery.process', 'plugins/jlayout/jlayout.border',
-			'plugins/jqueryui/jquery-ui', 'plugins/jlayout/jquery.jlayout' ],
+			'plugins/jqueryui/jquery-ui', 'plugins/jlayout/jquery.jlayout','plugins/bjui/bjui-regional.zh-CN'],
 			function($) {
 				var container = $('.layout');
 				function layout() {
@@ -87,35 +87,23 @@ html,body {
 					container.show()
 				});
 
-				/* $('.north').resizable({
-					handles: 's',
-					stop: layout,
-					//调整框的样式配置
-					helper: 'ui-resizable-helper-north'
-				}); */
-
-				/* $('.east').resizable({
-					handles: 'w',
-					stop: layout,
-					minWidth:200,
-				    helper: 'ui-resizable-helper-east'
-				}); */
-
-				//布局原始上不要参杂其他CSS样式定义,容易造成BUG
-				//bootstrap 和 jquery UI的 resizable 冲突  或者说 jquery ui有BUG 放弃拉动效果 或者转向定制效果
 				$('.west').resizable({
 					handles: 'e',
-					stop: layout,
+					stop: layout,//结束后时间监听,从新计算整体布局
 					minWidth:200,
 					maxWidth:500,
-					helper: 'ui-resizable-helper-west'
+					helper: 'ui-resizable-helper-west'//辅助线样式
 				}); 
 
 				$.when(layout()).then(function() {
 					container.process('complete');
 					//container.show();
+					//这里使用了外部布局插件,外部布局完毕之后才能正确计算内部高度
+					require(['plugins/bjui/bjui-navtab']);
 				})
 				$(window).resize(layout);
+				
+				$(".west .menu-items a").attr('data-toggle','navtab')
 			})
 </script>
 </head>
@@ -337,9 +325,7 @@ html,body {
             </ul>
             <div class="navtab-panel tabsPageContent">
                 <div class="navtabPage unitBox">
-                    <div class="bjui-pageContent" style="background:#FFF;">
-                        Loading...
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -347,7 +333,7 @@ html,body {
 	
 	
 	<div class="west">
-		<div class="panel-group panel-main collapse in"
+		<div class="panel-group panel-main collapse in" style="border-width: 0 1px 0 1px;border: 1px #C3CED5 solid;border-top: 0;border-bottom: 0;"
 			data-toggle="accordion" id="bjui-accordionmenu" aria-multiselectable="true">
 			<div class="panel panel-default collapse in">
 				<div class="panel-heading active">
