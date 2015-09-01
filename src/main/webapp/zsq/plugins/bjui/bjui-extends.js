@@ -16,7 +16,7 @@
  * ======================================================================== */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
-        define(['jquery','./bjui-core','./bjui-alertmsg'], factory);
+        define(['jquery','./bjui-core','./bjui-alertmsg','./bjui-initui'], factory);
     } else {
         factory(root.jQuery);
     }
@@ -25,6 +25,7 @@
     
     $.fn.extend({
         /**
+         * 提供可以可标记的ajax方法封装,记录方式AJAX的对象
          * @param {Object} op: {type:GET/POST, url:ajax请求地址, data:ajax请求参数列表, callback:回调函数 }
          */
         ajaxUrl: function(op) {
@@ -46,12 +47,11 @@
                 success  : function(response) {
                     var json = response.toJson(), $ajaxMask = $this.find('> .bjui-ajax-mask')
                     if (!json[BJUI.keys.statusCode]) {
-                        $this.empty().html(response).append($ajaxMask);
+                    	$this.empty().html(response).append($ajaxMask).initui()
                         if ($.isFunction(op.callback)) op.callback(response)
                     } 
                 },
                 error      : function(xhr, ajaxOptions, thrownError) {
-                	console.log(xhr);
                     //$this.bjuiajax('ajaxError', xhr, ajaxOptions, thrownError)
                     if (!$this.closest('.bjui-layout').length) {
                         if ($this.closest('.navtab-panel').length) $this.navtab('closeCurrentTab')

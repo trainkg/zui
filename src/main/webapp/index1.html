@@ -11,7 +11,7 @@
 <link href="dist/themes/css/style.css" rel="stylesheet">
 <link href="dist/themes/blue/core.css" id="dist-link-theme" rel="stylesheet">
 <link href="dist/themes/css/FA/css/font-awesome.min.css" rel="stylesheet">
-<link href="./zsq/animate.css" rel="stylesheet">
+<link href="./zsq/css/animate.css" rel="stylesheet">
 <link href="doc.css" rel="stylesheet">
 <!-- bootstrap - css -->
 <!--[if lte IE 7]>
@@ -54,7 +54,7 @@ html,body {
 }
 
 .south {
-	height: 50px;
+	height: 20px;
 }
 
 .ui-resizable-helper-west {
@@ -67,8 +67,7 @@ html,body {
 <!-- 使用B-gui中的一些信息 -->
 <!-- bootstrap plugins -->
 <!-- <script src="dist/plugins/bootstrap.min.js"></script>
-		<script src="dist/plugins/bootstrapSelect/bootstrap-select.min.js"></script>
-		<script src="dist/plugins/bootstraropSelect/defaults-zh_CN.min.js"></script> -->
+		<script src="dist/plugins/bootstrapSelect/bootstrap-select.min.js"></script> -->
 <script type="text/javascript">
 	require([ 'jquery', 'bootstrap', 'css!plugins/jqueryui/jquery-ui',
 			'plugins/process/jquery.process', 'plugins/jlayout/jlayout.border',
@@ -97,13 +96,13 @@ html,body {
 
 				$.when(layout()).then(function() {
 					container.process('complete');
-					//container.show();
 					//这里使用了外部布局插件,外部布局完毕之后才能正确计算内部高度
 					require(['plugins/bjui/bjui-navtab']);
 				})
 				$(window).resize(layout);
-				
 				$(".west .menu-items a").attr('data-toggle','navtab')
+				
+				
 			})
 </script>
 </head>
@@ -230,7 +229,7 @@ html,body {
 						<li><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-file-word-o"></i> 在线文档</a>
 							<div class="items hide" data-noinit="true">
 								<ul class="menu-items" data-faicon="star-o" data-tit="框架介绍">
-									<li><a href="doc/base/filelist.html" data-options="{id:'doc-file', faicon:'caret-right'}">文件详解</a></li>
+									<li><a href="test_tab_page.html" data-options="{id:'doc-file', faicon:'caret-right'}">文件详解</a></li>
 									<li><a href="doc/base/structure.html" data-options="{id:'doc-structure', faicon:'caret-right'}">页面结构</a></li>
 									<li><a href="doc/base/init.html" >框架初始化</a></li>
 									<li><a href="doc/base/hnav.html" >横向导航菜单</a></li>
@@ -292,7 +291,7 @@ html,body {
 							</div></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i> 系统设置 <span
 								class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu" style="width: 130px;">
+							<ul class="dropdown-menu animated bounceIn" role="menu" style="width: 130px;">
 								<li><a href="#">角色权限</a></li>
 								<li><a href="#">用户列表</a></li>
 								<li class="divider"></li>
@@ -346,7 +345,7 @@ html,body {
 				<div id="bjui-collapse0" class="panel-collapse collapse in">
 					<div class="panel-body">
 						<ul class="menu-items" data-faicon="star-o" data-tit="框架介绍">
-							<li class="active switch"><a href="doc/base/filelist.html"
+							<li class="active switch"><a href="test_tab_page.html"
 								data-options="{id:'doc-file', faicon:'caret-right'}"
 								title="文件详解"><i class="fa fa-caret-right"></i>文件详解</a></li>
 							<li><a href="doc/base/structure.html"

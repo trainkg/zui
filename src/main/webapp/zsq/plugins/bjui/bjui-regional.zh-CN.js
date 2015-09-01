@@ -130,6 +130,9 @@
         /* 503错误提示 */
         BJUI.setRegional('statusCode_503', '服务器当前负载过大或者正在维护！')
         
+        /*404错误提示*/
+        BJUI.setRegional('statusCode_404', '页面没有找到！')
+        
         /* timeout提示 */
         BJUI.setRegional('sessiontimeout', '会话超时，请重新登陆！')
         
@@ -149,7 +152,7 @@
         BJUI.setRegional('validatemsg', '提交的表单中 [{0}] 个字段有错误，请更正后再提交！')
         
         /* 框架名称 */
-        BJUI.setRegional('uititle', 'B-JUI')
+        BJUI.setRegional('uititle', 'ZUI')
         
         /* 主navtab标题 */
         BJUI.setRegional('maintab', '我的主页')

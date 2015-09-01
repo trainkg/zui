@@ -1,7 +1,15 @@
 // rconfig 全局唯一,必须定义 负责提供javascript寻址服务
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+}
+
+
 var rconfig = {
 	//所有模块的查找根路径。
-	baseUrl : 'zsq',
+	baseUrl : getContextPath()+'/zsq',
 	waitSeconds: 7,
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
 	urlArgs: 'v.1.0.2',
@@ -27,7 +35,7 @@ var rconfig = {
 		'domReady':'dist/zsq/domReady',
 		'form':'zsq/jquery/jquery.form',
         'ztree':'zsq/ztree/js/jquery.ztree.all-3.5.min',
-        'md5':'zsq/jquery/jQuery.md5',
+        'md5':'jquery/jQuery.md5',
         'uploadify':'zsq/uploadify/jquery.uploadify.min',
 		'jquery-ui':'zsq/jquery/jquery-ui-1.9.2.custom.min',
 		'echarts':'zsq/echart/echarts',

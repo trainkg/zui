@@ -238,7 +238,8 @@ td[align=right] input{text-align:right;}
 .bjui-pageHeader:before, .bjui-pageHeader:after{display:table; content:" ";}
 .bjui-pageHeader:after{clear:both;}
 .bjui-pageHeader label, .bjui-pageFooter label{margin-bottom:0;}
-.bjui-pageFooter{position:absolute; bottom:0; padding:1px 5px; width:100%; min-height:28px;}
+
+.bjui-pageFooter{position: absolute;bottom: 1px;padding: 1px 5px;min-height: 28px;left: 1px;right: 1px;}
 .bjui-pageFooter > ul > li{float:right; margin-left:5px;}
 .bjui-pageFooter > ul > li.left{float:left; margin-left:0; margin-right:5px;}
 .bjui-dialog .bjui-pageContent,
@@ -257,7 +258,7 @@ td[align=right] input{text-align:right;}
 .bjui-pageFooter > .pagination-box > ul > li.jumpto .goto{margin-left:-1px; height:25px; line-height:17px;}
 .bjui-pageHeader li .btn,
 .bjui-pageFooter li .btn{height:25px;}
-.bjui-pageContent{/* position:absolute; top:0; bottom:0;  width:100%; */padding:10px; overflow:auto;}
+.bjui-pageContent{position:absolute; top:0; bottom:0;  width:100%;padding:10px; overflow:auto;}
 .bjui-pageContent.tableContent{padding:0;}
 .bjui-pageContent p{line-height:1.5;}
 .bjui-pageFormContent{position:relative; display:block; padding:10px 5px; overflow:auto;}
@@ -295,7 +296,7 @@ td[align=right] input{text-align:right;}
 #bjui-navtab > .tabsMoreList > li{display:block; height:23px; line-height:21px; overflow:hidden;}
 #bjui-navtab > .tabsMoreList > li a{display:block; padding:0 10px; height:21px; white-space:nowrap; line-height:21px;}
 #bjui-navtab > .tabsMoreList > li a:hover{text-decoration:none;}
-#bjui-navtab > .tabsPageContent{/* position:relative;  */display:block; overflow:hidden; border-style:solid; border-width:0 1px 1px 1px;}
+#bjui-navtab > .tabsPageContent{position:relative;  display:block; overflow:hidden; border-style:solid; border-width:0 1px 1px 1px;}
 #bjui-navtab > .tabsPageContent > .navtabPage{height:100%; overflow:hidden;}
 /* Dialog */
 .bjui-dialog{position:absolute; display:block; text-align:left; border-radius:3px; box-shadow:0 2px 2px rgba(0, 0, 0, 0.3);}

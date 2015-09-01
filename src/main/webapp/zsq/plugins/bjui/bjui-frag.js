@@ -130,7 +130,7 @@
     
     BJUI.setRegional('uititle', 'B-JUI')
     
-    BJUI.setRegional('maintab', '我的主页')
+    BJUI.setRegional('maintab', 'my home')
     
     
     window.FRAG = {

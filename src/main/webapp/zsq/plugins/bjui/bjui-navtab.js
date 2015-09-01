@@ -13,7 +13,10 @@
  * ========================================================================
  * Copyright 2014 K'naan.
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- * ======================================================================== */
+ * ======================================================================== 
+ * 
+ * 受原来插件限制,在全局目前只能存在一个navtab对象 
+ */
 
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
@@ -26,31 +29,31 @@
     
     // NAVTAB GLOBAL ELEMENTS
     // ======================B-JUI
-    
+    // 受原来插件限制,全局管理,只能存在一个...
     var currentIndex, $currentTab, $currentPanel, $box, $tabs, $panels, $prevBtn, $nextBtn, $moreBtn, $moreBox, $main, $mainLi
     var autorefreshTimer
     
-    // NAVTAB CLASS DEFINITION
+    // NAVTAB CLASS DEFINITION,代表这选项卡中其中一个单元项
     // ======================
-    
     var Navtab = function(element, options) {
         this.$element = $(element)
         this.options  = options
         this.tools    = this.TOOLS()
     }
     
+    //icons 写在头部
     Navtab.DEFAULTS = {
         id          : undefined,
         title       : 'New tab',
         url         : undefined,
         type        : 'GET',
         data        : {},
-        loadingmask : true,
-        fresh       : false,
-        autorefresh : false,
-        onLoad      : null,
-        beforeClose : null,
-        onClose     : null
+        loadingmask : true, //是否有遮罩
+        fresh       : false,//重复打开统一链接的时候是否从新刷新
+        autorefresh : false,//是否主动刷新
+        onLoad      : null, //加载结束之后事件hook
+        beforeClose : null, //关闭tab前的事件hook
+        onClose     : null  //关闭tab后的时间监听
     }
     
     Navtab.prototype.TOOLS = function() {
@@ -541,9 +544,9 @@
         if (json && json[BJUI.keys.statusCode] == BJUI.statusCode.timeout) this.closeCurrentTab()
     }
     
+    //打开外部链接 iframe
     Navtab.prototype.openExternal = function(url, $panel) {
         var ih = $panel.closest('.navtab-panel').height()
-        
         $panel.html(FRAG.externalFrag.replaceAll('{url}', url).replaceAll('{height}', ih +'px'))
     }
     
@@ -568,6 +571,7 @@
                 data = new Navtab(this, options)
                 data.openTab()
             }
+            
         })
     }
     
@@ -604,6 +608,7 @@
     
     
     $(function() {
+    	// 并没有将一个选项卡插件做一个总的的对象,只是把其中一项封装
         var INIT_NAVTAB = function() {
             currentIndex = 0
             $box         = $('#bjui-navtab')
@@ -638,15 +643,14 @@
                 .navtab('contextmenu', $main)
                 .click(function() { $(this).navtab('switchTab', 'main') })
                 .find('> a > span').html(function(n, c) { return (mainTit = c.replace('#maintab#', BJUI.regional.maintab)) })
-            
             options = $.extend({}, Navtab.DEFAULTS, $main.data(), {id:'main', title:mainTit})
             
             $main.data('initOptions', options).data('options', options)
-            
             if ($main.attr('data-url')) {
-                $(document).one(BJUI.eventType.initUI, function(e) {
-                    $main.removeAttr('data-url').navtab('reload', options)
-                })
+//                $(document).one(BJUI.eventType.initUI, function(e) {
+//                    $main.removeAttr('data-url').navtab('reload', options)
+//                })
+                $main.removeAttr('data-url').navtab('reload', options)
             }
             
             setTimeout(function() {

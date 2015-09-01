@@ -13,7 +13,9 @@
  * ========================================================================
  * Copyright 2014 K'naan.
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- * ======================================================================== */
+ * ======================================================================== 
+ * event and config center peculiar.1@163.com
+ * */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -26,7 +28,7 @@
     var BJUI = {
         JSPATH     : 'BJUI/',
         PLUGINPATH : 'BJUI/plugins/',
-        IS_DEBUG   : false,
+        IS_DEBUG   : true,
         KeyPressed : { //key press state
             ctrl  : false,
             shift : false
@@ -38,7 +40,7 @@
             DELETE: 46, BACKSPACE: 8
         },
         eventType: {
-            initUI         : 'bjui.initUI',         // When document load completed or ajax load completed, B-JUI && Plugins init 
+            initUI         : 'ajaxTimeout',         // When document load completed or ajax load completed, B-JUI && Plugins init 
             beforeInitUI   : 'bjui.beforeInitUI',   // If your DOM do not init [add to DOM attribute 'data-noinit="true"']
             afterInitUI    : 'bjui.afterInitUI',    // 
             ajaxStatus     : 'bjui.ajaxStatus',     // When performing ajax request, display or hidden progress bar
