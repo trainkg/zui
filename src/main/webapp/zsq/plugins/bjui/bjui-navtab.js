@@ -600,6 +600,7 @@
         }
         
         if (!data.title) data.title = $this.text()
+        if(!data.id){data.id = data.title}
         if (href && !data.url) data.url = href
         Plugin.call($this, data)
         
@@ -650,14 +651,15 @@
             $main.data('initOptions', options).data('options', options)
             if ($main.attr('data-url')) {
             	$main.removeAttr('data-url').navtab('reload', options)
+            	$main.navtab('switchTab', 'main')
 		        /*$(document).one(BJUI.eventType.initUI, function(e) {
 		            $main.removeAttr('data-url').navtab('reload', options)
 		        })*/
             }
             
-            setTimeout(function() {
+         /*   setTimeout(function() {
                 $main.navtab('switchTab', 'main')
-            }, 50)
+            }, 50)*/
             
             $mainLi
                 .click(function() {

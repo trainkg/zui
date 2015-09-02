@@ -13,7 +13,9 @@
  * ========================================================================
  * Copyright 2014 K'naan.
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- * ======================================================================== */
+ * ========================================================================
+ * B-JUI 系统插件模板集合 
+ */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
         define(['jquery','./bjui-core'], factory);
@@ -136,10 +138,10 @@
     window.FRAG = {
         dialog: '<div class="bjui-dialog bjui-dialog-container" style="top:150px; left:300px;">' +
                 '    <div class="dialogHeader" onselectstart="return false;" oncopy="return false;" onpaste="return false;" oncut="return false;">' +
-                '        <a class="close" href="#close" title="#close#"><i class="fa fa-times-circle"></i></a>' +
-                '        <a class="maximize" href="#maximize" title="#maximize#"><i class="fa fa-plus-circle"></i></a>' +
-                '        <a class="restore" href="#restore" title="#restore#"><i class="fa fa-history"></i></a>' +
-                '        <a class="minimize" href="#minimize" title="#minimize#"><i class="fa fa-minus-circle"></i></a>' +
+                '        <a class="close" href="javascript:;" title="#close#"><i class="fa fa-times-circle"></i></a>' +
+                '        <a class="maximize" href="javascript:;" title="#maximize#"><i class="fa fa-plus-circle"></i></a>' +
+                '        <a class="restore" href="javascript:;" title="#restore#"><i class="fa fa-history"></i></a>' +
+                '        <a class="minimize" href="javascript:;" title="#minimize#"><i class="fa fa-minus-circle"></i></a>' +
                 '        <h1><span><i class="fa fa-th-large"></i></span> <span class="title">#title#</span></h1>' +
                 '    </div>' +
                 '    <div class="dialogContent unitBox"></div>' +

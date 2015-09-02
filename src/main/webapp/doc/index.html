@@ -28,7 +28,7 @@ html,body {
 	/* width: 100%;
 	height: 100%; */
 	padding: 0;
-	margin: 0 5px;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -62,7 +62,7 @@ html,body {
 .nav > li > ul{padding-left: 28px;}
 .nav > li > ul > li > ul{padding-left: 58px;}
 
-#z-side{border: 1px #C3CED5 solid;
+.west .panel-group{border: 1px #C3CED5 solid;
 border-top: 0;
 border-bottom: 0;}
 </style>
@@ -89,6 +89,7 @@ border-bottom: 0;}
 						hgap : 6
 					});
 				}
+				//防止布局照成的闪屏问题
 				$.when(container.process()).then(function() {
 					container.show()
 				});
@@ -104,10 +105,9 @@ border-bottom: 0;}
 				$.when(layout()).then(function() {
 					container.process('complete');
 					//这里使用了外部布局插件,外部布局完毕之后才能正确计算内部高度
-					require(['plugins/bjui/bjui-navtab']);
+					require(['plugins/bjui/bjui-navtab','plugins/bjui/bjui-dialog']);
 				})
 				$(window).resize(layout);
-				$(".west .menu-items a").attr('data-toggle','navtab')
 				
 				new navController;
 				Backbone.history.start();
@@ -116,6 +116,7 @@ border-bottom: 0;}
 				SyntaxHighlighter.config.clipboardSwf = '../zsq/other/syntaxhighlighter-2.1.382/scripts/clipboard.swf'
 			    $(document).on(BJUI.eventType.initUI, function(e) {
 			        SyntaxHighlighter.highlight();
+			        $(e.target).find("button").addClass('btn');
 			    })
 				    
 			})
@@ -123,7 +124,7 @@ border-bottom: 0;}
 
 
 </head>
-<body id="bjui-window" class="layout animated flipInY" style="display: none" >
+<body id="bjui-window" class="layout" style="display: none" >
 	<div class="north">
 		<header id="bjui-header">
 			<div class="bjui-navbar-header">
