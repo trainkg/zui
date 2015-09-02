@@ -20,16 +20,16 @@
 
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
-        define(['jquery','./bjui-core','./bjui-extends','./bjui-frag','./bjui-contextmenu'], factory);
+        define(['jquery','text!./tpl/nav-tab-content.html','./bjui-core','./bjui-extends','./bjui-frag','./bjui-contextmenu'], factory);
     } else {
         factory(root.jQuery);
     }
-}(window, function ($) {
+}(window, function ($,tpl) {
     'use strict';
     
     // NAVTAB GLOBAL ELEMENTS
     // ======================B-JUI
-    // 受原来插件限制,全局管理,只能存在一个...
+    // 受原来插件限制,全局管理,只能存在一个... tpl 内容区固定模板
     var currentIndex, $currentTab, $currentPanel, $box, $tabs, $panels, $prevBtn, $nextBtn, $moreBtn, $moreBox, $main, $mainLi
     var autorefreshTimer
     
@@ -610,7 +610,9 @@
     $(function() {
     	// 并没有将一个选项卡插件做一个总的的对象,只是把其中一项封装
         var INIT_NAVTAB = function() {
+        	//## 硬编码  强制在ID bjui-nav-content
             currentIndex = 0
+            $('#bjui-nav-content').html(tpl);
             $box         = $('#bjui-navtab')
             $tabs        = $box.find('.navtab-tab')
             $panels      = $box.find('.navtab-panel')
@@ -647,10 +649,10 @@
             
             $main.data('initOptions', options).data('options', options)
             if ($main.attr('data-url')) {
-//                $(document).one(BJUI.eventType.initUI, function(e) {
-//                    $main.removeAttr('data-url').navtab('reload', options)
-//                })
-                $main.removeAttr('data-url').navtab('reload', options)
+            	$main.removeAttr('data-url').navtab('reload', options)
+		        /*$(document).one(BJUI.eventType.initUI, function(e) {
+		            $main.removeAttr('data-url').navtab('reload', options)
+		        })*/
             }
             
             setTimeout(function() {

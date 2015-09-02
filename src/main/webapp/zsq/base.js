@@ -31,8 +31,6 @@ var rconfig = {
         'jquery-validate-extend':'zsq/jquery/jquery.validate.plugin',
         'jquery-multiselect-zh':'zsq/jquery/jquery.multiselect.zh-cn',
         'jquery-multiselect':'zsq/jquery/jquery.multiselect.min',
-		'backbone' : 'zsq/backbone/backbone',
-		'domReady':'dist/zsq/domReady',
 		'form':'zsq/jquery/jquery.form',
         'ztree':'zsq/ztree/js/jquery.ztree.all-3.5.min',
         'md5':'jquery/jQuery.md5',
@@ -47,6 +45,8 @@ var rconfig = {
             'css': 'css',
             'text': 'text',
             'jquery':'jquery',
+            'backbone' : 'backbone',
+            'domReady':'domReady',
             'underscore':'underscore'
         }
     },
