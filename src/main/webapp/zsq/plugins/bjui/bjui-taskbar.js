@@ -246,28 +246,8 @@
     Taskbar.prototype.minimize = function(dialog) {
         var that   = this
         var $dialog = (typeof dialog == 'string') ? $('body').data('dialog') : dialog
-        console.log({
-            top: $dialog.css('top'),
-            left: $dialog.css('left'),
-            height: $dialog.css('height'),
-            width: $dialog.css('width')
-        })
-        var $task   = this.getTask($dialog.data('options').id)
-        
-        
-        console.log({top:$(window).height() - 60+"px", left:$task.position().left+"px", width:$task.outerWidth()+"px", height:$task.outerHeight()+"px"});
-        
-        console.log($task);
-        
-        console.log($resizable)
-        
-        $('#bjui-resizable').animate({top: "188px", left: "433px", height: "298px", width: "498px"},function(){
-        	console.log('ccc');
-        	$(this).hide()
-            that.inactive($task)
-        })
-        
-		/*$resizable.css({
+        var $task = this.getTask($dialog.data('options').id)
+		/*$resizable*/$('#bjui-resizable').css({
             top: $dialog.css('top'),
             left: $dialog.css('left'),
             height: $dialog.css('height'),
@@ -275,7 +255,7 @@
         }).show().animate({top:$(window).height() - 60+"px", left:$task.position().left+"px", width:$task.outerWidth()+"px", height:$task.outerHeight()+"px"}, 250, function() {
             $(this).hide()
             that.inactive($task)
-        })*/
+        })
     }
     
     /**
@@ -285,7 +265,7 @@
         var $task = this.getTask($dialog.data('options').id)
         
         
-		$resizable.css({top:$(window).height() - 60, left:$task.position().left, height:$task.outerHeight(), width:$task.outerWidth()})
+		/*$resizable*/$('#bjui-resizable').css({top:$(window).height() - 60, left:$task.position().left, height:$task.outerHeight(), width:$task.outerWidth()})
         .show()
         .animate({top:$dialog.css('top'), left:$dialog.css('left'), width:$dialog.css('width'), height:$dialog.css('height')}, 250, function() {
             $(this).hide()

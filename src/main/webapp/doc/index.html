@@ -76,9 +76,10 @@ border-bottom: 0;}
 <!-- <script src="dist/plugins/bootstrap.min.js"></script>
 		<script src="dist/plugins/bootstrapSelect/bootstrap-select.min.js"></script> -->
 <script type="text/javascript">
-	require([ 'jquery','../doc/js/navController','backbone', 'bootstrap', 'css!plugins/jqueryui/jquery-ui',
+	//不允许使用相对路径,最好设立packages 在实际使用过程中 当引用相对路径 前台相对路径的时候可能会出现问题,尽量避免这个问题
+	require([ 'jquery','doc/js/navController','backbone', 'bootstrap', 'css!plugins/jqueryui/jquery-ui',
 			'plugins/process/jquery.process', 'plugins/jlayout/jlayout.border',
-			'plugins/jqueryui/jquery-ui', 'plugins/jlayout/jquery.jlayout','plugins/bjui/bjui-regional.zh-CN'],
+			'plugins/jqueryui/jquery-ui', 'plugins/jlayout/jquery.jlayout','plugins/bjui/bjui-regional.zh-CN','bootstrap-select','iCheck'],
 			function($,navController,Backbone) {
 				var container = $('.layout');
 				function layout() {
@@ -105,13 +106,12 @@ border-bottom: 0;}
 				$.when(layout()).then(function() {
 					container.process('complete');
 					//这里使用了外部布局插件,外部布局完毕之后才能正确计算内部高度
-					require(['plugins/bjui/bjui-navtab','plugins/bjui/bjui-dialog']);
+					require(['plugins/bjui/bjui-navtab','plugins/bjui/bjui-dialog','plugins/bjui/bjui-datepicker','plugins/bjui/bjui-spinner','plugins/bjui/bjui-lookup','plugins/bjui/bjui-plugins']);
 				})
 				$(window).resize(layout);
 				
 				new navController;
 				Backbone.history.start();
-				
 				//code 美化监听
 				SyntaxHighlighter.config.clipboardSwf = '../zsq/other/syntaxhighlighter-2.1.382/scripts/clipboard.swf'
 			    $(document).on(BJUI.eventType.initUI, function(e) {
@@ -326,10 +326,7 @@ border-bottom: 0;}
 		</header>
 	</div>
 	<div class="center"  id="bjui-nav-content">
-		
 	</div>
-	
-	
 	<div class="west">
 		<div id="z-side"></div>
 	</div>

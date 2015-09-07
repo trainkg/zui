@@ -14,7 +14,7 @@
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
  * ======================================================================== 
  * peculiar@163.com 从b-jui中提取
- * 单页应用中,针对UI的事件全局监听处理,为UI对象提供了一个完整的处理UI事件流程
+ * 单页应用中,针对UI的事件全局监听处理,为UI对象提供了一个完整的处理UI事件流程，值得参考和借鉴
  * */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
@@ -256,8 +256,8 @@
     
     /* Clean plugins generated 'Dom elements' in the body */
     var bodyClear = function($target) {
-        //$target.find('select[data-toggle="selectpicker"]').selectpicker('destroyMenu')
-        //$target.find('[data-toggle="selectztree"]').trigger('destroy.bjui.selectztree')
+        $target.find('select[data-toggle="selectpicker"]').selectpicker('destroyMenu')
+        $target.find('[data-toggle="selectztree"]').trigger('destroy.bjui.selectztree')
     }
     $(document).on(BJUI.eventType.beforeLoadDialog, function(e) {
         

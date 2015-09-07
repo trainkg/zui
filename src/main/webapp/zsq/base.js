@@ -15,7 +15,8 @@ var rconfig = {
 	urlArgs: 'v.1.0.2',
 	//从CommonJS包(package)中加载模块。参见从包中加载模块
 	packages:[
-		{name:'zbase',location:"."}
+		{name:'zbase',location:"."},
+		{name:'doc',location:"../doc"}
 	],
 	//在deps加载完毕后执行的函数。当将require设置为一个config object在加载require.js之前使用时很有用，其作为配置的deps数组加载完毕后为require指定的函数。
 	callback:null,
@@ -38,7 +39,9 @@ var rconfig = {
 		'jquery-ui':'zsq/jquery/jquery-ui-1.9.2.custom.min',
 		'echarts':'zsq/echart/echarts',
 		'echarts/chart/line':'zsq/echart/echarts',
-		'pdfobject':'zsq/pdf/pdfobject'
+		'pdfobject':'zsq/pdf/pdfobject',
+		'bootstrap-select':'plugins/bootstrapSelect/bootstrap-select.min',
+		'iCheck':'plugins/icheck/icheck.min'
 	},
 	map: {
         '*': {
@@ -104,6 +107,14 @@ var rconfig = {
 		},
 		'plupload':{
 			exports:'plupload'
+		},
+		'bootstrap-select':{
+			deps:['jquery','css!plugins/bootstrapSelect/bootstrap-select'],
+			exports:'$.fn.selectpicker'
+		},
+		'iCheck':{
+			deps:['jquery'],
+			exports:'$.fn.iCheck'
 		}
 	}
 }

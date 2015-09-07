@@ -1,0 +1,49 @@
+<div class="bjui-pageContent">
+    <div class="bjui-doc">
+        <h3 class="page-header">弹框响应式+模板引擎的综合应用</h3>
+    </div>
+    <p>首先： 模板引擎可以使用reatjs/backbone</p>
+    <p>reatjs 自身也有响应式的类级别支撑体系 不过目前还不是太清晰,目前使用backbone 进行引擎整合</p>
+    <div>
+    	<button type="button" class="btn-green" data-toggle="dialog" data-id="mydialog3" data-target="#doc-dialog-target" data-title="加载容器中的内容">打开dialog</button>
+    </div>
+    <script type="text/javascript">
+    	require(['doc/js/b-dialog-view'],function(V){
+    		new V({el:'#test',vid:'doc-dialog-target'});
+    	});
+    </script>
+    <pre class="brush: javascript">
+    	<div>
+	    	<button type="button" class="btn-green" data-toggle="dialog" data-id="mydialog3" data-target="#doc-dialog-target" data-title="加载容器中的内容">打开dialog</button>
+	    </div>
+	    &lt;script type="text/javascript">
+	    	require(['doc/js/b-dialog-view'],function(V){
+	    		new V({el:'#test',vid:'doc-dialog-target'});
+	    	});
+	    &lt;/script>
+    </pre>
+    <blockquote>
+            <p>Backbone VIEW 定义</p>
+    </blockquote>
+    <pre class="brush: javascript">
+    	define(['backbone','underscore','text!./tpl/t-1.html'],function(Backbone,_,temp){
+			var t = {
+				_temp:_.template(temp),
+				initialize:function(config){
+					this.config = _.extend(config);
+					this.render();
+				},
+				render:function(){
+					this.$el.html(this._temp(this.config));
+				}
+			}
+			return Backbone.View.extend(t);
+		})
+    </pre>
+    <div id="test"></div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
