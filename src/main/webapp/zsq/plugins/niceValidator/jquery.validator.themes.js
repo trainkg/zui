@@ -1,9 +1,11 @@
 /* ========================================================================
  * for nice validate themes
  * @since K'naan (xknaan@163.com)
- * ======================================================================== */
+ * ======================================================================== 
+ * 该主题依赖bjui-extends 
+ **/
 
-+function ($) {
+define(['jquery','./jquery.validator'],function ($) {
     'use strict';
 
     function fixedLeft($msgbox) {
@@ -270,4 +272,4 @@
         formClass : 'n-red'
     })
     
-}(jQuery);
+});

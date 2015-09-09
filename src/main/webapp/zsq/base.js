@@ -40,7 +40,6 @@ var rconfig = {
 		'echarts':'zsq/echart/echarts',
 		'echarts/chart/line':'zsq/echart/echarts',
 		'pdfobject':'zsq/pdf/pdfobject',
-		'bootstrap-select':'plugins/bootstrapSelect/bootstrap-select.min',
 		'iCheck':'plugins/icheck/icheck.min'
 	},
 	map: {
@@ -107,10 +106,6 @@ var rconfig = {
 		},
 		'plupload':{
 			exports:'plupload'
-		},
-		'bootstrap-select':{
-			deps:['jquery','css!plugins/bootstrapSelect/bootstrap-select'],
-			exports:'$.fn.selectpicker'
 		},
 		'iCheck':{
 			deps:['jquery'],

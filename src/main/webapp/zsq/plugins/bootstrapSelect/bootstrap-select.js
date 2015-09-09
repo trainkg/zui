@@ -39,7 +39,14 @@ if (!Object.keys) {
   }());
 }
 
-(function ($) {
++function(root,factory){
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery','css!./bootstrap-select'], factory);
+    } else {
+        factory(root.jQuery);
+    }
+}
+(window,function ($) {
   'use strict';
 
   // Case insensitive search
@@ -1270,4 +1277,4 @@ if (!Object.keys) {
       Plugin.call($selectpicker, $selectpicker.data());
     })
   });
-})(jQuery);
+});

@@ -211,7 +211,7 @@
         })
 
         /* nice validate - Default error messages */
-        $.validator && $.validator.config({
+       /* $.validator && $.validator.config({
             messages: {
                 required: '{0}不能为空',
                 remote: '{0}已被使用',
@@ -252,6 +252,6 @@
                     lte_2: ''
                 }
             }
-        })
+        })*/
     })
 });

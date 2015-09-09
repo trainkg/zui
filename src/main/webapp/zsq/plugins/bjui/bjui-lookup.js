@@ -13,7 +13,12 @@
  * ========================================================================
  * Copyright 2014 K'naan.
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- * ======================================================================== */
+ * ======================================================================== 
+ * 查找带回功能，主要指的是应用于查找待会的特殊面板，本质还是一个 dialog
+ * 
+ * 基本设定过于强耦合, 适用性基本为0
+ * @departed
+ * */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
         define(['jquery','./bjui-alertmsg','./bjui-dialog'], factory);
@@ -25,7 +30,11 @@
     
     // LOOKUP GLOBAL ELEMENTS
     // ======================
-    
+    /**
+     * group 			: 分组
+     * suffix			: 后缀
+     * $currentLookup	: 当前的查找待会选择器
+     */
     var group, suffix, $currentLookup
     
     // LOOKUP CLASS DEFINITION
@@ -73,7 +82,6 @@
         $currentLookup = this.$element
         
         if (suffix) suffix = suffix.trim()
-        
         this.open(that.$element)
     }
     
@@ -137,6 +145,7 @@
     
     Lookup.prototype.setVal = function(args, type) {
         var that = this
+        debugger
         var $box = $currentLookup.closest('.unitBox')
         var newValue  /* @description 增加 @author 小策一喋 */
         
@@ -234,9 +243,10 @@
         e.preventDefault()
     })
     
+    //lookupback 元素在打开的面板中
     $(document).on('click.bjui.lookupback.data-api', '[data-toggle="lookupback"]', function(e) {
         var $this = $(this)
-        var args  = $this.data('args')
+        var args  = $this.data('args') // 获取数据参数,太过牵强附会,谁能强行约束打卡面板数据在 args里面
         var mult  = $this.data('lookupid')
         var type = $('input[name="lookupType"]:checked').val() /* @description 新增 获取是否追加框值 @author 小策一喋 */
         
