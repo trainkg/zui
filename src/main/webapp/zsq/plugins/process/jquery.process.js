@@ -13,8 +13,8 @@
   var defaults = {
      //进度条类型, 默认采用bootstrap的进度条
      'type':'gif',//gif,css3,bootstrap
-     'imgType':'load3',//
-     'maskColor':null,//遮罩颜色
+     'imgType':'load4',//
+     'maskColor':'#FCFCFC',//遮罩颜色
      'opacity':'1',//遮罩透明度
      'maskStyle':null,//遮罩层style
      'loadMessage':'正在加载内容信息...'
@@ -41,21 +41,17 @@
        
        if(tpl){        
           var domContext = {
-            'imgType':this.options.imgType
+            'imgType':this.options.imgType,
           }
           var _t = _.template(tpl);
           dom = _t(domContext);
+          
        }
        
-       var $element = $(this.element).append(dom); 
+       var $element = $(this.element).append(dom);
+       $element.css({'position':'relative'});
        var $layer = $element.find('.u-layer');
-
-       var backColor = this.options.maskColor;
-       if(backColor){$layer.css('background-color',backColor)}
-       
-       var opacity = this.options.opacity;
-       if(opacity){$layer.css('opacity',opacity)}
-
+       $layer.css({'opacity':this.options.opacity,'background-color':this.options.maskColor})
        $layer.show();
     },
     complete:function(){
