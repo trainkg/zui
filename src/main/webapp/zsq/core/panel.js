@@ -1,87 +1,49 @@
 /**
- * jquery 面板插件 
+ * 面板,设定响应的布局~
  */
-!function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery','backbone','text!./template/panel.html','underscore'], factory);
-  } else {
-    factory(root.jQuery);
-  }
-}(window, function($,Backbone,tpl,_) {
-  'use strict';
- 
-  var defaults = {
-	  title:null,
-	  width:null,
-	  height:null,
-	  panelCls:'panel-default'
-  };
- 
-  var process = function(element, options) {
-    this.element = element;
-    this.options = options;
-  };
-
-  process.DEFAULT = defaults;
- 
-  process.prototype = {
-    constructor: process,
-    init: function() {},
-    complete:function(){}
-  }
- 
-  function Plugin(options) {
-    var property = options;
-    var options = $.extend(true, {}, defaults, options);
-    
-    return this.each(function() {
-      var $this = $(this);
-      var data = process.prototype;
-
-      if (typeof property == 'string' && $.isFunction(data[property])) {
-         data[property].apply($this.data('zsq.panel'));
-      } else {
-         data = new process($this, options);
-         $this.data('zsq.panel',data)
-         data.init();
-      }
-    });
-  };
- 
-  /*JQUERY PLUGIN*/
-  var old = $.fn.panel;
-
-  $.fn.panel = Plugin;
-  $.fn.panel.Constructor = process;
-
-	// LOOKUP NO CONFLICT
-	// =================
+define(['jquery','backbone','underscore',
+        'text!./template/layout.html',
+        'plugins/jlayout/jquery.sizes',
+        'plugins/jlayout/jlayout.border',
+        'plugins/jlayout/jlayout.flexgrid',
+        'plugins/jlayout/jlayout.flow',
+        'plugins/jlayout/jlayout.grid',
+        'plugins/jlayout/jquery.jlayout',
+        'css!./css/layout'
+ ],function($,Backbone,_,ftl) {
 	
-	$.fn.panel.noConflict = function () {
-	    $.fn.panel = old
-	    return this
-	}
-    
+  var defaults = {
+	  layout:{
+		resize : false,
+		type : 'border', //布局方案   border | flow | flexgrid | grid
+		vgap : 6,		 //垂直间距
+		hgap : 6		 //水平间距
+	  } 	//面板内容布局方案
+  };
     
    /*------BACKBONE-----*/
    var panel = Backbone.View.extend({
-	   _template:_.template(tpl),
+	   $template:$(ftl),
 	   initialize:function(config){
 		   this.context = _.extend({},defaults,config);
 	   },
 	   render:function(){
-		   this.$el.html(this._template(this.context));
-		   this.renderPanel();
+		   switch(this.context.layout.type){
+		   	  case 'border'  : this.borderLayout();	 break;
+		   	  case 'flow'	 : this.flowLayout();  	 break;
+		   	  case 'flexgrid': this.flexgridLayout();break;
+		   	  case 'grid'    : this.gridLayout();	 break;
+		   }
+		   this.$el.layout(this.context.layout);
 	   },
-	   getContent:function(){
-		 return this.$el.find('.panel-body');  
+	   borderLayout:function(){
+		   this.$el.append(this.$template.find('.m-border-layout').children());
 	   },
-	   /**
-	    * 开放子类实现
-	    */
-	   renderPanel:function(){}
+	   flowLayout:function(){},
+	   flexgridLayout:function(){},
+	   gridLayout:function(){}
    });
     
    return panel;
 });
- 
+

@@ -6,7 +6,8 @@
  */
 define(['backbone','underscore','text!./template/window.html'],function(Backbone,_,tpl){
 	
-	var defaults = {	
+	var defaults = {
+		id:'zsq_window',
 		zIndex: 9000,					
 		draggable: true,				
 		resizable: true,				
@@ -16,14 +17,13 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 		title:null,
 		width       : 500,
         height      : 300,
-        minW        : 65,
-        minH        : 40,
+        minW        : 500,
+        minH        : 300,
 		// window's property which difference from panel
 		collapsible: false,					//暂不支持
 		maxminable:true,
 		closable:true,
 		closed: false,
-		max:false,							//当前状态最大化
 		events:{
 			onMax	:'zsq.maxWin',
 			onMin	:'zsq.minMin',
@@ -44,7 +44,7 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 	var ZSQ_Window = Backbone.View.extend({
 		_template:_.template(tpl),
 		initialize:function(config){
-			this.context = _.extend({},defaults,config);
+			this.context = _.extend({max:false},defaults,config);
 		},
 		events:{
 			'click .close':		'close',
@@ -107,6 +107,8 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 			if(this.context.resizable){
 			   require(['jquery.resizable'],function(){
 				   view._getContent().resizable({
+					   minWidth:view.context.minW,
+					   minHeight:view.context.minH,
 					   onResize:function(e){
 						   view._evalBodySize();
 					   }

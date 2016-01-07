@@ -127,7 +127,7 @@
 				o = ( element.data('layout') ) ? $.extend(opts, element.data('layout')) : opts,
 				elementWrapper = wrap(element, o.resize);
 
-			if (o.type === 'border' && typeof jLayout.border !== 'undefined') {                
+			if (o.type === 'border' && typeof jLayout.border !== 'undefined') {      
 				$.each(['north', 'south', 'west', 'east', 'center'], function (i, name) {
 					if (element.children().hasClass(name)) {
 						o[name] = wrap(element.children('.' + name + ':first'));
