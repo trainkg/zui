@@ -12,7 +12,7 @@ var rconfig = {
 	baseUrl : getContextPath()+'/zsq',
 	waitSeconds: 7,
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
-	urlArgs: 'v.1.0.2',
+	urlArgs: 'v.1.0.0',
 	//从CommonJS包(package)中加载模块。参见从包中加载模块
 	packages:[
 		{name:'zbase',location:"."},
@@ -112,5 +112,5 @@ var rconfig = {
 			exports:'$.fn.iCheck'
 		}
 	}
-}
+};
 require.config(rconfig);
