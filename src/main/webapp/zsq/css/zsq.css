@@ -19,10 +19,15 @@ html, body {
     display: inline-block;
 }
 
+.center{
+	background:transparent;
+}
+
 .m-layout-panel{
 	width: 100%;
 	height: 100%;
 	border: 1px solid #C8C8C8;
+	overflow: auto;
 }
 .ui-resizable-helper-west {
 	border-right: 4px solid green;
