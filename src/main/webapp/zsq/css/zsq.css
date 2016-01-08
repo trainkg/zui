@@ -3,6 +3,7 @@ html, body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
 }
 
 .layout {
@@ -11,17 +12,29 @@ html, body {
 
 .center, .east, .west, .north, .south {
 	background-color: rgb(220,220,220);
-	border: 1px solid rgb(200,200,200);
+	border:none !important;
+	padding:0 !important;
+	margin:0 !important;
 	text-align: center;
-             display: inline-block;
+    display: inline-block;
 }
 
-.west, .east {
-	width: 8%;
+.m-layout-panel{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #C8C8C8;
 }
-
-.north, .south {
-	height: 10%;
+.ui-resizable-helper-west {
+	border-right: 4px solid green;
+}
+.ui-resizable-helper-south {
+	border-top: 4px solid green;
+}
+.ui-resizable-helper-north {
+	border-bottom: 4px solid green;
+}
+.ui-resizable-helper-east {
+	border-left: 4px solid green;
 }
 
 /*NEC function */
