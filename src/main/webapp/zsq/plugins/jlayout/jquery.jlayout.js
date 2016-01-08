@@ -36,7 +36,6 @@
 		$.extend(that, {
 			doLayout: function () {
                 var l = item.data('jlayout');
-                
 				if (l) {
                     l.layout(that);
 				}
@@ -48,7 +47,6 @@
 			insets: function () {
 				var p = item.padding(),
 					b = item.border();
-
 				return {
                     'top': p.top, 
 					'bottom': p.bottom + b.bottom + b.top, 
