@@ -1,0 +1,26 @@
+<div class="btn-group" id="<%=id%>">
+  <%_.each(buttons,function(button){%>
+  	 <%if(button.menu || button.hasMenu){%>
+  	 <div class="btn-group" role="group">
+	    <%if(button.split){%>
+	    <a href="javascript:;" class="btn btn-sm <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
+		<a href="javascript:;" class="btn btn-sm <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
+		    <span class="caret"></span>
+		    <span class="sr-only">Toggle Dropdown</span>
+		</a>
+	    <%}else{%>
+	     <a id='<%=button.id%>' class="/ btn-sm <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
+	    	<%=button.name%>
+	      <span class="caret"></span>
+	     </a>
+	    <%}%>
+	    
+	    <div class="dropdown-menu">
+	    	这个是自定义的区域信息
+	    </div>
+	 </div>
+  	 <%}else{%>
+  	 <a href="<%=_.isString(button.fn)?button.fn:'javascrip:;'%>" id='<%=button.id%>' class="btn btn-sm <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
+  	 <%}%>
+  <%})%>
+</div>

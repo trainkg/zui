@@ -90,8 +90,6 @@
 				left += tmp.width + my.hgap;
 			}
 			if (center && center.isVisible()) {
-				console.log("中间");
-				console.log({'x': left, 'y': top, 'width': right - left, 'height': bottom - top});
 				center.bounds({'x': left, 'y': top, 'width': right - left, 'height': bottom - top});
 				center.doLayout();
 			}

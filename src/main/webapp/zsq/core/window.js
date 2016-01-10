@@ -1,4 +1,4 @@
-/**
+/*
  * 定义公共的window, 模态框
  * 
  * 
@@ -207,7 +207,7 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
         /**
          * 子类覆盖~, 添加window子元素
          */
-        addCompnent:function(){}
+        addComponent:function(){}
 	});
 	
 	return ZSQ_Window;
