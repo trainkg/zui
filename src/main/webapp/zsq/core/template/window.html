@@ -2,11 +2,11 @@
    <div class="modal-content">
      <div class="modal-header">
      	<%if(closable){%>
-   		<a href="javascript:;"  class="close u-action"><span class="glyphicon glyphicon-remove"></span></a>
+   		<a href="javascript:void(0);"  class="close u-action"><span class="glyphicon glyphicon-remove"></span></a>
      	<%}%>
      	<%if(maxminable){%>
-     	<a href="javascript:;" class="max u-action restore <%=max?'':'f-dn'%>"><span class="glyphicon glyphicon glyphicon glyphicon-resize-small"></span></>
-     	<a href="javascript:;" class="max u-action maximize <%=max?'f-dn':''%>" ><span class="glyphicon glyphicon glyphicon-resize-full"></span></a>
+     	<a href="javascript:void(0);" class="max u-action restore <%=max?'':'f-dn'%>"><span class="glyphicon glyphicon glyphicon glyphicon-resize-small"></span></>
+     	<a href="javascript:void(0);" class="max u-action maximize <%=max?'f-dn':''%>" ><span class="glyphicon glyphicon glyphicon-resize-full"></span></a>
      	<%}%>
      	<%if(collapsible){%>
      	<a  class="min u-action"><span class="glyphicon glyphicon-minus"></span></a>
@@ -17,7 +17,7 @@
      </div>
      <div class="modal-footer">
        <%_.each(buttons,function(button){%>
-       <button type="button" data-spi='<%=button.name%>' href="javascript:;" class='<%=button.cls%> btn action-btn'><%=button.name%></button>
+       <button type="button" data-spi='<%=button.name%>' href="javascript:void(0);" class='<%=button.cls%> btn action-btn'><%=button.name%></button>
        <%})%>
      </div>
    </div><!-- /.modal-content -->

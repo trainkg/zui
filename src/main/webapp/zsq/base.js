@@ -14,10 +14,7 @@ var rconfig = {
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
 	urlArgs: 'v.1.0.0',
 	//从CommonJS包(package)中加载模块。参见从包中加载模块
-	packages:[
-		{name:'zbase',location:"."},
-		{name:'doc',location:"../doc"}
-	],
+	packages:null,
 	//在deps加载完毕后执行的函数。当将require设置为一个config object在加载require.js之前使用时很有用，其作为配置的deps数组加载完毕后为require指定的函数。
 	callback:null,
 	//如果设置为true，则使用document.createElementNS()去创建script元素。
@@ -40,7 +37,11 @@ var rconfig = {
 		'echarts':'zsq/echart/echarts',
 		'echarts/chart/line':'zsq/echart/echarts',
 		'pdfobject':'zsq/pdf/pdfobject',
-		'iCheck':'plugins/icheck/icheck.min'
+		'iCheck':'plugins/icheck/icheck.min',
+		'jquery.parser':'jquery.parser',
+		'jquery.menu':'jquery.menu',
+		'jquery.resizable':'jquery.resizable',
+		'jquery.draggable':'jquery.draggable'
 	},
 	map: {
         '*': {
@@ -110,6 +111,22 @@ var rconfig = {
 		'iCheck':{
 			deps:['jquery'],
 			exports:'$.fn.iCheck'
+		},
+		'jquery.parser':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'jquery.menu':{
+			deps:['jquery','jquery.parser'],
+			exports:'jQuery'
+		},
+		'jquery.resizable':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'jquery.draggable':{
+			deps:['jquery'],
+			exports:'jQuery'
 		}
 	}
 };
