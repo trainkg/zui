@@ -9,10 +9,10 @@
 		    <span class="sr-only">Toggle Dropdown</span>
 		</a>
 	    <%}else{%>
-	     <a data-index='<%=index%>' href="<%=_.isString(button.fn)?button.fn:'javascrip:;'%>" class="btn btn-action btn-sm <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
+	    <a data-index='<%=index%>' href="<%=_.isString(button.fn)?button.fn:'javascript:void(0)'%>" class="btn btn-action btn-sm <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
 	    	<%=button.name%>
 	        <span class="caret"></span>
-	     </a>
+	    </a>
 	    <%}%>
 	    <div class="dropdown-menu">
 	    	这个是自定义的区域信息

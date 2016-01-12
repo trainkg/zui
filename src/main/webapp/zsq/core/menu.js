@@ -5,11 +5,12 @@
 define(['backbone','underscore','css!./css/menu.css','jquery.menu'],function(Backbone,_,ftl){
 	var defaults = {
 		template:null	//通过模板解析整个MENU
-		,itemHeight:30
+		,itemHeight:25
 		,fit:true
 		,inline:true
 	}
 	var Menu = Backbone.View.extend({
+		_menu:null,
 		initialize:function(config){
 			var context = _.extend({},defaults,config);
 			this.context = context;
@@ -18,8 +19,17 @@ define(['backbone','underscore','css!./css/menu.css','jquery.menu'],function(Bac
 		render:function(){
 			this.$el.html(this._template(this.context));
 			this.$el.show();//plugin need exec size.
-			$('> :first',this.$el).menu(this.context);
+			this._menu = $('> :first',this.$el).menu(this.context);
 			this.$el.hide();
+		},
+		hide:function(){
+			this._menu.hide();
+		},
+		show:function(){
+			this._menu.show();
+		},
+		exec:function(name,props){
+			this._menu[name](props);
 		}
 	});
 	return Menu;

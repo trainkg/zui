@@ -3,6 +3,7 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 	
 	var defaults = {
 		id:"zsq_menu_button",
+		mouseoverToggle:false,
 		//JSON id|name*|cls|fn|
 		/*
 		 * NAME		button name
@@ -19,6 +20,7 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 		_template:_.template(tpl),
 		initialize:function(config){
 			this.context = _.extend({},defaults,config);
+			//this buttons is active.
 			this.context.active = true;
 		},
 		events:{
@@ -35,15 +37,23 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 			this.renderMenu();
 		},
 		dropdownMenuToggleAtActive:function(e){
-			if(this.context.active && MenuButton.globalActive && $(e.currentTarget).siblings('.dropdown-menu').is(':hidden')){
+			if(this.context.mouseoverToggle && this.context.active && MenuButton.globalActive && $(e.currentTarget).siblings('.dropdown-menu').is(':hidden')){
 				this.dropdownMenuToggle(e);
 			}
 		},
 		dropdownMenuToggle:function(e){
 			MenuButton.globalActive = true;
 			var current = $(e.currentTarget).siblings('.dropdown-menu');
-			current.toggle();
-			this.context.active = $(current).is(':visible');
+			var isShow = $(current).is(':visible');
+			/*
+			var index = $(e.currentTarget).data('index');
+			if(isShow){
+				this.context.buttons[index].menu.hide();
+			}else{
+				this.context.buttons[index].menu.show();
+			}*/
+			current.toggle(100,'linear');
+			this.context.active = !isShow;
 			$(document).find('.dropdown-menu').not(current).hide();
 		},
 		btnAction:function(e){
@@ -62,6 +72,14 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 				if(btn.menu){
 					var content = $('.btn-action:eq('+index+')',this.$el).siblings('.dropdown-menu');
 					btn.menu.setElement(content).render();
+				}
+			});
+		},
+		//销毁相关兑现
+		distroy:function(){
+			_.each(this.context.buttons,function(btn,index){
+				if(btn.menu){
+					btn.menu.exec('destroy');
 				}
 			});
 		}

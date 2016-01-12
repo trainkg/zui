@@ -41,7 +41,9 @@ var rconfig = {
 		'jquery.parser':'jquery.parser',
 		'jquery.menu':'jquery.menu',
 		'jquery.resizable':'jquery.resizable',
-		'jquery.draggable':'jquery.draggable'
+		'jquery.draggable':'jquery.draggable',
+		'linkbutton':'jquery.linkbutton',
+		'tabs':'jquery.tabs'
 	},
 	map: {
         '*': {
@@ -125,6 +127,14 @@ var rconfig = {
 			exports:'jQuery'
 		},
 		'jquery.draggable':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'linkbutton':{
+			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'tabs':{
 			deps:['jquery'],
 			exports:'jQuery'
 		}

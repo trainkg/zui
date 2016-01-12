@@ -20,25 +20,26 @@
 
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
-        define(['jquery','text!./tpl/nav-tab-content.html','./bjui-core','./bjui-extends','./bjui-frag','./bjui-contextmenu'], factory);
+        define(['jquery','./bjui-core','./bjui-extends','./bjui-frag'], factory);
     } else {
         factory(root.jQuery);
     }
-}(window, function ($,tpl) {
+}(window, function ($) {
     'use strict';
     
     // NAVTAB GLOBAL ELEMENTS
     // ======================B-JUI
     // 受原来插件限制,全局管理,只能存在一个... tpl 内容区固定模板
-    var currentIndex, $currentTab, $currentPanel, $box, $tabs, $panels, $prevBtn, $nextBtn, $moreBtn, $moreBox, $main, $mainLi
-    var autorefreshTimer
-    
     // NAVTAB CLASS DEFINITION,代表这选项卡中其中一个单元项
     // ======================
     var Navtab = function(element, options) {
+    	
+    	var currentIndex, $currentTab, $currentPanel, $box, $tabs, $panels, $prevBtn, $nextBtn, $moreBtn, $moreBox, $main, $mainLi
+        var autorefreshTimer
         this.$element = $(element)
         this.options  = options
         this.tools    = this.TOOLS()
+        this.INIT_NAVTAB(this.$element);
     }
     
     //icons 写在头部
@@ -63,13 +64,13 @@
                 return Navtab.DEFAULTS
             },
             getTabs: function() {
-                return $tabs.find('> li')
+                return that.$tabs.find('> li')
             },
             getPanels: function() {
-                return $panels.find('> div')
+                return that.$panels.find('> div')
             },
             getMoreLi: function() {
-                return $moreBox.find('> li')
+                return that.$moreBox.find('> li')
             },
             getTab: function(tabid) {
                 var index = this.indexTabId(tabid)
@@ -106,20 +107,18 @@
                 return iOpenIndex
             },
             getLeft: function() {
-                return $tabs.position().left
+                return that.$tabs.position().left
             },
             getScrollBarW: function() {
-                return $box.width() - 55
+                return that.$box.width() - 55
             },
             visibleStart: function() {
                 var iLeft = this.getLeft(), iW = 0
                 var $tabs = this.getTabs()
-                
                 for (var i = 0; i < $tabs.size(); i++) {
                     if (iW + iLeft >= 0) return i
                     iW += $tabs.eq(i).outerWidth(true)
                 }
-                
                 return 0
             },
             visibleEnd: function() {
@@ -146,7 +145,7 @@
                     this.scrollTab(-this.getTabsW(0, iEnd + 1) + this.getScrollBarW())
             },
             scrollTab: function(iLeft, isNext) {
-                $tabs.animate({ left: iLeft }, 200, function() { that.tools.ctrlScrollBtn() })
+                that.$tabs.animate({ left: iLeft }, 200, function() { that.tools.ctrlScrollBtn() })
             },
             scrollCurrent: function() { // auto scroll current tab
                 var iW = this.tabsW(this.getTabs()), scrollW = this.getScrollBarW()
@@ -164,17 +163,17 @@
                 var iW = this.tabsW(this.getTabs())
                 
                 if (this.getScrollBarW() > iW) {
-                    $prevBtn.hide()
-                    $nextBtn.hide()
-                    $tabs.parent().removeClass('tabsPageHeaderMargin')
+                	that.$prevBtn.hide()
+                    that.$nextBtn.hide()
+                    that.$tabs.parent().removeClass('tabsPageHeaderMargin')
                 } else {
-                    $prevBtn.show().removeClass('tabsLeftDisabled')
-                    $nextBtn.show().removeClass('tabsRightDisabled')
-                    $tabs.parent().addClass('tabsPageHeaderMargin')
+                	that.$prevBtn.show().removeClass('tabsLeftDisabled')
+                    that.$nextBtn.show().removeClass('tabsRightDisabled')
+                    that.$tabs.parent().addClass('tabsPageHeaderMargin')
                     if (this.getLeft() >= 0)
-                        $prevBtn.addClass('tabsLeftDisabled')
+                    	that.$prevBtn.addClass('tabsLeftDisabled')
                     else if (this.getLeft() <= this.getScrollBarW() - iW)
-                        $nextBtn.addClass('tabsRightDisabled')
+                    	that.$nextBtn.addClass('tabsRightDisabled')
                 }
             },
             switchTab: function(iTabIndex) {
@@ -198,10 +197,10 @@
                 }
                 
                 this.getMoreLi().removeClass('active').eq(iTabIndex).addClass('active')
-                currentIndex = iTabIndex
+                that.currentIndex = iTabIndex
                 this.scrollCurrent()
-                $currentTab     = $tab
-                $.CurrentNavtab = $currentPanel = $panel
+                that.$currentTab     = $tab
+                //$.CurrentNavtab = $currentPanel = $panel
                 
                 if (onSwitch) onSwitch.apply(that)
                 
@@ -284,10 +283,10 @@
         
         return tools
     }
-    
+    //右键菜单
     Navtab.prototype.contextmenu = function($obj) {
         var that = this
-        $obj.contextmenu({
+        /*$obj.contextmenu({
             id: 'navtabCM',
             bindings: {
                 reload: function(t, m) {
@@ -324,7 +323,7 @@
                     if (!t.data('url')) mReload.addClass('disabled')
                 }
             }
-        })
+        })*/
     }
     
     // if found tabid replace tab, else create a new tab.
@@ -550,6 +549,68 @@
         $panel.html(FRAG.externalFrag.replaceAll('{url}', url).replaceAll('{height}', ih +'px'))
     }
     
+    Navtab.prototype.INIT_NAVTAB = function($content) {
+        this.currentIndex = 0
+        var $box         = $('#bjui-navtab',$content)
+        var $tabs        = $box.find('.navtab-tab')
+        var $panels      = $box.find('.navtab-panel')
+        var $prevBtn     = $box.find('.tabsLeft')
+        var $nextBtn     = $box.find('.tabsRight')
+        var $moreBtn 	 = $box.find('.tabsMore')
+        var $moreBox     = $box.find('.tabsMoreList');
+        var $main        = $tabs.find('li:first')
+        var $mainLi      = $moreBox.find('li:first')
+        
+        $prevBtn.click(function() { $(this).navtab('scrollPrev') })
+        $nextBtn.click(function() { $(this).navtab('scrollNext') })
+        $moreBtn.click(function() { $moreBox.show() })
+        
+        $(document).on('click.bjui.navtab.switchtab', function(e) {
+            var $target = e.target.tagName == 'I' ? $(e.target).parent() : $(e.target)
+            if ($moreBtn[0] != $target[0]) $moreBox.hide()
+        })
+        
+        var iContentH = $box.height(), navtabH = $box.find('.tabsPageHeader').height();
+        $panels.height(iContentH - navtabH)
+        
+        var mainTit, options
+        
+        $main
+            //.navtab('contextmenu', this.$main)
+            .click(function() { $content.navtab('switchTab', 'main') })
+            .find('> a > span').html(function(n, c) { return (mainTit = c.replace('#maintab#', BJUI.regional.maintab)) })
+        
+        options = $.extend({}, Navtab.DEFAULTS, $main.data(), {id:'main', title:mainTit})
+        
+        $main.data('initOptions', options).data('options', options)
+        if ($main.attr('data-url')) {
+        	$main.removeAttr('data-url').navtab('reload', options)
+        	$main.navtab('switchTab', 'main')
+        }
+        
+        
+        $mainLi
+            .click(function() {
+                if ($(this).hasClass('active')) $moreBox.hide()
+                else {
+                	$content.navtab('switchTab', 'main')
+                }
+            })
+            .find('> a').html(function(n, c) { return c.replace('#maintab#', BJUI.regional.maintab) })
+            
+         
+        this.$box 	 = $box;
+        this.$tabs   = $tabs;
+        this.$panels = $panels;
+        this.$prevBtn= $prevBtn;
+        this.$nextBtn= $nextBtn;
+        this.$moreBtn= $moreBtn;
+        this.$moreBox= $moreBox;
+        this.$main   = $main;
+        this.$mainLi = $mainLi;
+    }
+    
+    
     // NAVTAB PLUGIN DEFINITION
     // =======================
     
@@ -567,11 +628,9 @@
                 [].shift.apply(args)
                 if (!args) data[property]()
                 else data[property].apply(data, args)
-            } else {
-                data = new Navtab(this, options)
-                data.openTab()
             }
-            
+            /*data = new Navtab(this, options)
+            data.openTab()*/
         })
     }
     
@@ -587,88 +646,4 @@
         $.fn.navtab = old
         return this
     }
-
-    // NAVTAB DATA-API
-    // ==============
-    
-    $(document).on('click.bjui.navtab.data-api', '[data-toggle="navtab"]', function(e) {
-        var $this   = $(this), href = $this.attr('href'), data = $this.data(), options = data.options
-        if (options) {
-            if (typeof options == 'string') options = options.toObj()
-            if (typeof options == 'object')
-                $.extend(data, options)
-        }
-        
-        if (!data.title) data.title = $this.text()
-        if(!data.id){data.id = data.title}
-        if (href && !data.url) data.url = href
-        Plugin.call($this, data)
-        
-        e.preventDefault()
-    })
-    
-    
-    $(function() {
-    	// 并没有将一个选项卡插件做一个总的的对象,只是把其中一项封装
-        var INIT_NAVTAB = function() {
-        	//## 硬编码  强制在ID bjui-nav-content
-            currentIndex = 0
-            $('#bjui-nav-content').html(tpl);
-            $box         = $('#bjui-navtab')
-            $tabs        = $box.find('.navtab-tab')
-            $panels      = $box.find('.navtab-panel')
-            $prevBtn     = $box.find('.tabsLeft')
-            $nextBtn     = $box.find('.tabsRight')
-            $moreBtn     = $box.find('.tabsMore')
-            $moreBox     = $box.find('.tabsMoreList')
-            $main        = $tabs.find('li:first')
-            $mainLi      = $moreBox.find('li:first')
-            
-            $prevBtn.click(function() { $(this).navtab('scrollPrev') })
-            $nextBtn.click(function() { $(this).navtab('scrollNext') })
-            $moreBtn.click(function() { $moreBox.show() })
-            
-            $(document).on('click.bjui.navtab.switchtab', function(e) {
-                var $target = e.target.tagName == 'I' ? $(e.target).parent() : $(e.target)
-                
-                if ($moreBtn[0] != $target[0]) $moreBox.hide()
-            })
-            
-            // pageContent 大小计算,从core拷贝过来修改
-            var iContentH = $box.height(), 
-                navtabH   = $box.find('.tabsPageHeader').height();
-            $panels.height(iContentH - navtabH)
-            // 计算结束
-            
-            var mainTit, options
-            
-            $main
-                .navtab('contextmenu', $main)
-                .click(function() { $(this).navtab('switchTab', 'main') })
-                .find('> a > span').html(function(n, c) { return (mainTit = c.replace('#maintab#', BJUI.regional.maintab)) })
-            options = $.extend({}, Navtab.DEFAULTS, $main.data(), {id:'main', title:mainTit})
-            
-            $main.data('initOptions', options).data('options', options)
-            if ($main.attr('data-url')) {
-            	$main.removeAttr('data-url').navtab('reload', options)
-            	$main.navtab('switchTab', 'main')
-		        /*$(document).one(BJUI.eventType.initUI, function(e) {
-		            $main.removeAttr('data-url').navtab('reload', options)
-		        })*/
-            }
-            
-         /*   setTimeout(function() {
-                $main.navtab('switchTab', 'main')
-            }, 50)*/
-            
-            $mainLi
-                .click(function() {
-                    if ($(this).hasClass('active')) $moreBox.hide()
-                    else $(this).navtab('switchTab', 'main')
-                })
-                .find('> a').html(function(n, c) { return c.replace('#maintab#', BJUI.regional.maintab) })
-        }
-        
-        INIT_NAVTAB()
-    })
 });

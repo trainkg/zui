@@ -16,7 +16,7 @@
  * ======================================================================== */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
-        define(['jquery','./bjui-core','./bjui-alertmsg','./bjui-initui'], factory);
+        define(['jquery','./bjui-core'], factory);
     } else {
         factory(root.jQuery);
     }
@@ -43,7 +43,7 @@
                 data     : op.data || {},
                 cache    : false,
                 dataType : 'html',
-                /*timeout  : BJUI.ajaxTimeout,*/
+                timeout  : BJUI.ajaxTimeout,
                 success  : function(response) {},
                 error      : function(xhr, ajaxOptions, thrownError) {},
                 statusCode : {}
@@ -84,10 +84,10 @@
                 }
             }
             op.error = op.error || function(xhr, ajaxOptions, thrownError) {
-                $this.bjuiajax('ajaxError', xhr, ajaxOptions, thrownError)
+                /*$this.bjuiajax('ajaxError', xhr, ajaxOptions, thrownError)
                 if ($ajaxMask) {
                     $target.trigger('bjui.ajaxError')
-                }
+                }*/
             }
             
             $.ajax(op)
