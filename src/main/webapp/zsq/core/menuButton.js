@@ -87,7 +87,6 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 		globalActive:false
 	});
 	
-	
 	$(document).on('click.zsq.menubtn',function(){
 		$(document).find('.dropdown-menu').hide();
 		MenuButton.globalActive = false;

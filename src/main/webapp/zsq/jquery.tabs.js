@@ -46,7 +46,6 @@
 		
 		var tabsWidth = getContentWidth(header.find('ul.tabs'));
 		var cWidth = header.width() - tool._outerWidth();
-		
 		if (tabsWidth > cWidth) {
 			sLeft.add(sRight).show()._outerHeight(tHeight);
 			if (opts.toolPosition == 'left'){
@@ -182,6 +181,7 @@
 				setTabSize(state.tabs[state.tabs.length-1], justifiedWidth+deltaWidth);
 			}
 		}
+		
 		setScrollers(container);
 
 		function setTabSize(p, width){
@@ -230,6 +230,7 @@
 		$('<div class="tabs-header">'
 				+ '<div class="tabs-scroller-left"></div>'
 				+ '<div class="tabs-scroller-right"></div>'
+				+ '<div class="tabs-select-more"></div>'
 				+ '<div class="tabs-wrap">'
 				+ '<ul class="tabs"></ul>'
 				+ '</div>'
@@ -442,7 +443,6 @@
 				state.options.onUnselect.call(container, popts.title, getTabIndex(container, this));
 			}
 		}));
-		
 		// only update the tab header
 		$(container).tabs('update', {
 			tab: pp,
@@ -455,7 +455,6 @@
 		var state = $.data(container, 'tabs');
 		var opts = state.options;
 		if (options.selected == undefined) options.selected = true;
-		
 		createTab(container, options);
 		opts.onAdd.call(container, options.title, options.index);
 		if (options.selected){
@@ -579,8 +578,8 @@
 		tab.panel('destroy');
 		
 		opts.onClose.call(container, title, index);
-		
-//		setScrollers(container);
+		//TODO release ?
+		setScrollers(container);
 		setSize(container);
 		
 		// remove the select history item

@@ -7,6 +7,8 @@ define(['backbone','underscore','tabs','panel','css!./css/panel','css!./css/link
 		welcome:undefined //welcome page html
 	   ,fullSize:true 	  //是否填充满父标签
 	   ,template:null	  //模板
+	   ,fit:true
+	   ,height:'auto'
 	}
 	
 	var Tabs = Backbone.View.extend({
@@ -23,33 +25,30 @@ define(['backbone','underscore','tabs','panel','css!./css/panel','css!./css/link
 		render:function(){
 			this.$el.html(this._template(this.context));
 			this.$el.append('<div></div>')
-			this.internTab = $('> div:first',this.$el).tabs({
-				fit:true,
-				tools:[{
-					iconCls:'icon-add',
-					handler:function(){
-						alert('add')
-					}
-				},{
-					iconCls:'icon-save',
-					handler:function(){
-						alert('save')
-					}
-				}],
-				height: "auto"
-			});
-			window.a = this.internTab;
+			this.internTab = $('> div:first',this.$el).tabs(this.context);
 		},
-		exec:function(name){
-			arguments.shift()
-			var fn = this.internTab[name];
-			return fn.apply(this.internTab,arguments);
+		exec:function(){
+			return this.internTab.tabs.apply(this.internTab,arguments);
 		},
 		/*
 		 * 在指定的坐标中,添加VIEW
 		 */
 		addComponent:function(index,view){
+		},
+		removePanel:function(){
+			var tab = this.internTab.tabs('getSelected');
+	        if (tab){
+	            var index = this.internTab.tabs('getTabIndex', tab);
+	            $('#tt').tabs('close', index);
+	        }
+		},
+		addComponent:function(props,view){
+			this.exec('add',props);
+			var panel = this.internTab.tabs('getTab',props.title);
+			if(view){view.setElement(panel.panel('body')).render();}
 		}
+	},{
+		index:1
 	});
 	
 	return Tabs;
