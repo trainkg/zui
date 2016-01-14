@@ -3,6 +3,7 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 	
 	var defaults = {
 		id:"zsq_menu_button",
+		buttonCls:'btn-sm',
 		mouseoverToggle:false,
 		//JSON id|name*|cls|fn|
 		/*

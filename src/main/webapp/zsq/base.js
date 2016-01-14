@@ -44,7 +44,8 @@ var rconfig = {
 		'jquery.draggable':'jquery.draggable',
 		'linkbutton':'jquery.linkbutton',
 		'tabs':'jquery.tabs',
-		'panel':'jquery.panel'
+		'panel':'jquery.panel',
+		'accordion':'jquery.accordion'
 	},
 	map: {
         '*': {
@@ -141,6 +142,10 @@ var rconfig = {
 		},
 		'panel':{
 			deps:['jquery'],
+			exports:'jQuery'
+		},
+		'accordion':{
+			deps:['jquery','panel'],
 			exports:'jQuery'
 		}
 	}

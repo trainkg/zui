@@ -1,20 +1,3 @@
-/*!
- * B-JUI  v1.2 (http://b-jui.com)
- * Git@OSC (http://git.oschina.net/xknaan/B-JUI)
- * Copyright 2014 K'naan (xknaan@163.com).
- * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- */
-/* ========================================================================
- * B-JUI: bjui-core.js  v1.2
- * @author K'naan (xknaan@163.com)
- * -- Modified from dwz.core.js (author:ZhangHuihua@msn.com)
- * http://git.oschina.net/xknaan/B-JUI/blob/master/BJUI/js/bjui-core.js
- * ========================================================================
- * Copyright 2014 K'naan.
- * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
- * ======================================================================== 
- * event and global config center peculiar.1@163.com 
- */
 +function(root,factory){
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -24,9 +7,9 @@
 }(window, function ($) {
     'use strict';
     
-    var BJUI = {
-        JSPATH     : 'BJUI/',
-        PLUGINPATH : 'BJUI/plugins/',
+    var ZUI = {
+        //JSPATH     : 'BJUI/',
+        //PLUGINPATH : 'BJUI/plugins/',
         IS_DEBUG   : true,
         KeyPressed : { //key press state
             ctrl  : false,
@@ -66,7 +49,7 @@
             clientPaging     : true,      // Response paging and sorting information on the client
             overwriteHomeTab : false      // When open an undefined id of navtab, whether overwrite the home navtab
         },
-        debug: function(msg) {
+        log: function(msg) {
             if (this.IS_DEBUG) {
                 if (typeof(console) != 'undefined') console.log(msg)
                 else alert(msg)
@@ -83,8 +66,8 @@
             var login = this.loginInfo
             
             $('body').dialog({id:'bjui-login', url:login.url, title:login.title, width:login.width, height:login.height, mask:login.mask})
-        },
-        init: function(options) {
+        }
+        /*init: function(options) {
             var op = $.extend({}, options)
             
             $.extend(BJUI.statusCode, op.statusCode)
@@ -101,33 +84,9 @@
             
             if ((!$.cookie || !$.cookie('bjui_theme')) && op.theme) $(this).theme('setTheme', op.theme)
         },
-        regional: {},
-        setRegional: function(key, value) {
-            BJUI.regional[key] = value
-        },
-        getRegional : function(key) {
-            if (String(key).indexOf('.') >= 0) {
-                var msg, arr = String(key).split('.')
-                
-                for (var i = 0; i < arr.length; i++) {
-                    if (!msg) msg = BJUI.regional[arr[i]]
-                    else msg = msg[arr[i]]
-                }
-                
-                return msg
-            } else {
-                return BJUI.regional[key]
-            }
-        },
-        doRegional: function(frag, regional) {
-            $.each(regional, function(k, v) {
-                frag = frag.replaceAll('#'+ k +'#', v)
-            })
-            
-            return frag
-        }
+        */
     }
     
-    window.BJUI = BJUI    
-    return BJUI;
+    window.ZUI = ZUI  
+    return ZUI;
 });

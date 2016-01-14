@@ -28,8 +28,8 @@ define(['backbone','underscore','css!./css/menu.css','jquery.menu'],function(Bac
 		show:function(){
 			this._menu.show();
 		},
-		exec:function(name,props){
-			this._menu[name](props);
+		exec:function(){
+			return this._menu.menu.apply(this._menu,arguments);
 		}
 	});
 	return Menu;

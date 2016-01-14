@@ -22,7 +22,7 @@ define(['jquery','backbone','underscore',
 		showSouth:true,
 		northHt:50,
 		westWt:250,
-		southHt:50,
+		southHt:25,
 		eastWt:250,
 		//border
 		resizable:{
@@ -66,14 +66,11 @@ define(['jquery','backbone','underscore',
 		   if(this.context.resizeWin){
 			  var resizeTimer = null;
 			  $(window).on('resize', function () {
-			           if (resizeTimer) {
-			               clearTimeout(resizeTimer)
-			           }
-			           resizeTimer = setTimeout(function(){
-			        	   view.layout();
-			           }, 150);
-			       }
-			   )
+		           if (resizeTimer) {clearTimeout(resizeTimer)}
+		           resizeTimer = setTimeout(function(){
+		        	   $(document).trigger('zsq.border.resize',new Date().getTime());
+		           }, 150);
+			   })
 		   }
 		   
 		   if(this.context.type === 'border'){
