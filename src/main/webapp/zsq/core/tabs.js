@@ -1,7 +1,8 @@
-''/*
+/*
  * 选项卡插件
+ * see http://www.jeasyui.com/documentation/index.php#
  */
-define(['backbone','underscore','tabs','panel','css!./css/panel','css!./css/linkbutton','css!./css/tabs'],function(Backbone,_,Navtab){
+define(['backbone','underscore','jqtabs','jqpanel','css!./css/panel','css!./css/linkbutton','css!./css/tabs'],function(Backbone,_,Navtab){
 	
 	var DEFAULTS = {
 		welcome:undefined //welcome page html

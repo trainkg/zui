@@ -1,6 +1,7 @@
 //面板,设定响应的布局~,只支持border 其他布局方案采用css,减少javascript压力
 //建议应用最外层使用border布局,内部无特殊需求不使用
 //使用警告： 布局插件CSS如果自定义的话，原则 参与计算的对象和内容块 不能有边框,不能有滚动条
+//see http://jqueryui.com/resizable/
 define(['jquery','backbone','underscore',
         'text!./template/layout.html',
         'plugins/jlayout/jquery.sizes',
@@ -33,10 +34,12 @@ define(['jquery','backbone','underscore',
 				resize:false
 			},
 			west:{
-				resize:true
+				resize:true,
+				minWidth:150
 			},
 			east:{
-				resize:true
+				resize:true,
+				minWidth:150
 			}
 		},
 		resizeConfig:null, 	//JSON
@@ -48,6 +51,12 @@ define(['jquery','backbone','underscore',
 	   $template:$(ftl),
 	   initialize:function(config){
 		   this.context = _.extend({},defaults,config);
+		   if(config.resizable){
+			   this.context.resizable.south = _.extend({},defaults.resizable.south,config.resizable.south);
+			   this.context.resizable.north = _.extend({},defaults.resizable.north,config.resizable.north);
+			   this.context.resizable.west = _.extend({},defaults.resizable.west,config.resizable.west);
+			   this.context.resizable.east = _.extend({},defaults.resizable.east,config.resizable.east);
+		   }
 	   },
 	   render:function(){
 		   switch(this.context.type){

@@ -1,12 +1,14 @@
 //面板,设定响应的布局~,只支持border 其他布局方案采用css,减少javascript压力
-//
-define(['./context','jquery','backbone','underscore','panel'],function(ZSQ,$,Backbone,_) {
+//see http://www.jeasyui.com/documentation/index.php#
+define(['./context','jquery','backbone','underscore','jqpanel'],function(ZSQ,$,Backbone,_) {
 	var DEFAULTS = {
-		template:null,			//panel-parse-temlate
+		template:null,				//panel-parse-temlate
 		fit:true,
 		border:true,
-		view:null,				//sub view
-		usePanel:true,			//jq panel
+		view:null,					//sub view
+		usePanel:true,				//jq panel
+		cls:'panel-default',		//bt
+		headerCls:'panel-heading', 	//bootstrap3
 		/*
 		 * {
 			template:null,   string | function
@@ -41,6 +43,9 @@ define(['./context','jquery','backbone','underscore','panel'],function(ZSQ,$,Bac
 					var _panel = this._panel = $('> div:first',content);
 					_panel.panel(this.context); 
 				}
+				//bootstrap css
+				this.content = this._panel.panel('body');
+				this.content.css('border-color',this._panel.panel('header').css('border-color'));
 			}
 			if(this.context.view) this.addCompnent(this.context.view);
 		},
@@ -65,6 +70,7 @@ define(['./context','jquery','backbone','underscore','panel'],function(ZSQ,$,Bac
 		},
 		addCompnent:function(view){
 			this.context.view = view;
+			console.log(this.content);
 			view.setElement(this.content).render();
 		}
 	})

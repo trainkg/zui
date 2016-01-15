@@ -42,10 +42,10 @@ var rconfig = {
 		'jquery.menu':'jquery.menu',
 		'jquery.resizable':'jquery.resizable',
 		'jquery.draggable':'jquery.draggable',
-		'linkbutton':'jquery.linkbutton',
-		'tabs':'jquery.tabs',
-		'panel':'jquery.panel',
-		'accordion':'jquery.accordion'
+		'jqlinkbutton':'jquery.linkbutton',
+		'jqtabs':'jquery.tabs',
+		'jqpanel':'jquery.panel',
+		'jqaccordion':'jquery.accordion'
 	},
 	map: {
         '*': {
@@ -132,20 +132,20 @@ var rconfig = {
 			deps:['jquery'],
 			exports:'jQuery'
 		},
-		'linkbutton':{
+		'jqlinkbutton':{
 			deps:['jquery'],
 			exports:'jQuery'
 		},
-		'tabs':{
-			deps:['jquery','linkbutton','panel'],
+		'jqtabs':{
+			deps:['jquery','jqlinkbutton','jqpanel'],
 			exports:'jQuery'
 		},
-		'panel':{
+		'jqpanel':{
 			deps:['jquery'],
 			exports:'jQuery'
 		},
-		'accordion':{
-			deps:['jquery','panel'],
+		'jqaccordion':{
+			deps:['jquery','jqpanel'],
 			exports:'jQuery'
 		}
 	}

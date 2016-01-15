@@ -63,6 +63,7 @@
   filter: alpha(opacity=60);
   margin: 0 0 0 2px;
   vertical-align: top;
+  text-decoration: none;
 }
 .panel-tool a:hover {
   opacity: 1;
@@ -111,7 +112,8 @@
 .panel-body {
   border-color: #D4D4D4;
 }
-.panel-header {
+/* 
+ .panel-header {
   background-color: #F2F2F2;
   background: -webkit-linear-gradient(top,#ffffff 0,#F2F2F2 100%);
   background: -moz-linear-gradient(top,#ffffff 0,#F2F2F2 100%);
@@ -119,7 +121,7 @@
   background: linear-gradient(to bottom,#ffffff 0,#F2F2F2 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#F2F2F2,GradientType=0);
-}
+} */
 .panel-body {
   background-color: #ffffff;
   color: #333;
@@ -128,7 +130,7 @@
 .panel-title {
   font-size: 12px;
   font-weight: bold;
-  color: #777;
+  /* color: #777; */
   height: 16px;
   line-height: 16px;
 }

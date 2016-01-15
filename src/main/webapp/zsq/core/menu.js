@@ -1,6 +1,7 @@
 /*
  * 导航菜单 
  * 核心采用jquery easy ui 相应的插件制作
+ * see http://www.jeasyui.com/documentation/index.php#
  */
 define(['backbone','underscore','css!./css/menu.css','jquery.menu'],function(Backbone,_,ftl){
 	var defaults = {

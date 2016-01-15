@@ -3,7 +3,7 @@
   	 <%if(button.menu || button.hasMenu){%>
   	 <div class="btn-group" role="group">
 	    <%if(button.split){%>
-	    <a href="javascript:void(0);" class="btn btn-sm <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
+	    <a href="javascript:void(0);" class="btn <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
 		<a href="javascript:void(0);" data-index='<%=index%>' class="btn-action btn <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
 		    <span class="caret"></span>
 		    <span class="sr-only">Toggle Dropdown</span>
