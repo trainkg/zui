@@ -70,10 +70,10 @@ define(['./context','jquery','backbone','underscore','jqpanel'],function(ZSQ,$,B
 		},
 		addCompnent:function(view){
 			this.context.view = view;
-			console.log(this.content);
 			view.setElement(this.content).render();
 		}
 	})
+	ZSQ.panel = Panel;
 	return Panel;
 });
 

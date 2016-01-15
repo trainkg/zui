@@ -4,7 +4,7 @@
  * 
  * 模态框的动画采用CSS3定制
  */
-define(['backbone','underscore','text!./template/window.html'],function(Backbone,_,tpl){
+define(['./context','backbone','underscore','text!./template/window.html'],function(ZSQ,Backbone,_,tpl){
 	
 	var defaults = {
 		id:'zsq_window',
@@ -15,8 +15,8 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 		//modal: false,						
 		inline: false,						//不能拖动超出上层容器
 		title:null,
-		width       : 500,
-        height      : 300,
+		width       : 800,
+        height      : 450,
         minW        : 500,
         minH        : 300,
 		// window's property which difference from panel
@@ -29,7 +29,8 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 			onMin	:'zsq.minMin',
 			onColl	:'zsq.collapWin',
 			onClose	:'zsq.closeWin',
-			onOpen	:'zsq.openWindow'
+			onOpen	:'zsq.openWindow',
+			onSize  :'zsq.sizeChange'
 		},
 		/**
 		 * [{id:1,cls:'ss',name:cc,action:function(){...}}]
@@ -44,7 +45,14 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 	var ZSQ_Window = Backbone.View.extend({
 		_template:_.template(tpl),
 		initialize:function(config){
-			this.context = _.extend({max:false},defaults,config);
+			this.context = _.extend({max:false,id:"zsq-win-"+ZSQ_Window._id},defaults,config);
+			this.context.animate = _.extend([],defaults.animate,config.animate);
+			if(!(this.context.$el && config.el)){
+				$('body').append('<div id="'+this.context.id+'"></div>');
+				this.$el = $('#'+this.context.id,$('body'));
+			};
+			this.initButtons();
+			this.renderState = false;
 		},
 		events:{
 			'click .close':		'close',
@@ -53,13 +61,13 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 			'click .action-btn':'btnAtion'
 		},
 		render:function(){
-			this.initButtons();
 			this.$el.html(this._template(this.context));
 			this.show();
 			this.$el.trigger(this.context.events.onOpen);
 			this._initPosition();
 			this.initPlugins();
-			this.addCompnent();
+			this.addComponent();
+			this.renderState = true;
 		},
 		_getModel:function(){
 			return this.$el.find('.modal');
@@ -110,6 +118,7 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
 					   minWidth:view.context.minW,
 					   minHeight:view.context.minH,
 					   onResize:function(e){
+						   e.stopPropagation();
 						   view._evalBodySize();
 					   }
 				   }); 
@@ -156,6 +165,7 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
         		fheight = $('> .modal-footer', $dialog).outerHeight(),
         		hheight = $('> .modal-header', $dialog).outerHeight();
         	$dialog.find('> .modal-body').css('height',height - fheight -hheight+'px')
+        	this.$el.trigger(this.context.events.onSize,this);
         },
         /*
          * 最大化最小化切换
@@ -208,7 +218,7 @@ define(['backbone','underscore','text!./template/window.html'],function(Backbone
          * 子类覆盖~, 添加window子元素
          */
         addComponent:function(){}
-	});
+	},{_id:1});
 	
 	return ZSQ_Window;
 });
