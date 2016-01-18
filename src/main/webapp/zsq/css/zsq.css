@@ -2933,7 +2933,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     margin: -2px 0 0 8px;
 }
 .dropdown-menu{padding: 0}
-
+.modal .modal-body{padding:0}
 /*抛弃自适应 IE7宽度设定无效*/
 .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
   float: left;

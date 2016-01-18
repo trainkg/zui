@@ -40,7 +40,7 @@ define(['backbone','underscore','jqtabs','jqpanel','css!./css/panel','css!./css/
 			var tab = this.internTab.tabs('getSelected');
 	        if (tab){
 	            var index = this.internTab.tabs('getTabIndex', tab);
-	            $('#tt').tabs('close', index);
+	            this.internTab.tabs('close', index);
 	        }
 		},
 		addComponent:function(props,view){

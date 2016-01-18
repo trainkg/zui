@@ -98,19 +98,19 @@ define(['jquery','backbone','underscore',
 		   if(this.context.type === 'border' && this.context.glbResize){
 			   if(layout.resizable.south.resize){
 				   var config = _.extend(layout.resizable.south,{handles: 'n',helper:'ui-resizable-helper-south'},defConfig);
-				   $('.south',this.$el).resizable(config); 
+				   $('.south',this.$el).resizableR(config); 
 			   }
 			   if(layout.resizable.north.resize){
 				   var config = _.extend(layout.resizable.north,{handles: 's',helper:'ui-resizable-helper-north'},defConfig);
-				   $('.north',this.$el).resizable(config); 
+				   $('.north',this.$el).resizableR(config); 
 			   }
 			   if(layout.resizable.east.resize){
 				   var config = _.extend(layout.resizable.east,{handles: 'w',helper:'ui-resizable-helper-east'},defConfig);
-				   $('.east',this.$el).resizable(config); 
+				   $('.east',this.$el).resizableR(config); 
 			   }
 			   if(layout.resizable.west.resize){
 				   var config = _.extend(layout.resizable.west,{handles: 'e',helper:'ui-resizable-helper-west'},defConfig);
-				   $('.west',this.$el).resizable(config); 
+				   $('.west',this.$el).resizableR(config); 
 			   }
 		   }
 	   },
