@@ -8,7 +8,8 @@ define(['./context','backbone','underscore','css!./css/window','jqwindow'],funct
 		template:null,
 		width:600,
 	    height:400,
-	    modal:true,
+	    modal:false,
+	    shadow:true,
 	    collapsible:false,
 	    minimizable:false,
 	    maximizable:false
