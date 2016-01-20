@@ -142,7 +142,7 @@ html, body {
 /*NEC function */
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
 .f-cb,.f-cbli li{zoom:1;}
-.f-ysxn{overflow-y: auto;overflow-x: hidden;}
+.f-ysxn{overflow-y: hidden;overflow-x: hidden;}
 .f-fill{width: 100%;height: 100%}
 .f-ib{display:inline-block;*display:inline;*zoom:1;}
 .f-dn{display:none;}

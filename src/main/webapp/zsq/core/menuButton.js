@@ -1,9 +1,14 @@
-//按钮组,在设计上将按钮组和菜单导航分开,按钮组只是打开Menu导航的一种方式
+/*
+ * 按钮组,在设计上将按钮组和菜单导航分开,按钮组只是打开Menu导航的一种方式
+ * 注意：MENU的onhide和onshow没有开放
+ */
 define(['backbone','underscore','text!./template/menuButton.html'],function(Backbone,_,tpl){
 	
 	var defaults = {
+		//menuButton template
+		template:null,
 		id:"zsq_menu_button",
-		buttonCls:'btn-sm',
+		buttonCls:'btn-xs',
 		mouseoverToggle:false,
 		//JSON id|name*|cls|fn|
 		/*
@@ -13,6 +18,7 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 		 * menu		button menu view
 		 * hasMenu	this button has menu, when menu has set,it will not be must define.
 		 * split	this button is split TURE|FALSE DEFAULT false
+		 * icon     icon class
 		 */
 		buttons:null
 	}
@@ -46,16 +52,13 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 			MenuButton.globalActive = true;
 			var current = $(e.currentTarget).siblings('.dropdown-menu');
 			var isShow = $(current).is(':visible');
-			/*
 			var index = $(e.currentTarget).data('index');
 			if(isShow){
 				this.context.buttons[index].menu.hide();
 			}else{
 				this.context.buttons[index].menu.show();
-			}*/
-			current.toggle(100,'linear');
-			this.context.active = !isShow;
-			$(document).find('.dropdown-menu').not(current).hide();
+			}
+			$('.dropdown-menu',this.$el).not(current).hide();
 		},
 		btnAction:function(e){
 			var index = $(e.currentTarget).data('index');
@@ -69,9 +72,10 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 			this.context.buttons[index].fn = fcn;
 		},
 		renderMenu:function(){
+			var that = this;
 			_.each(this.context.buttons,function(btn,index){
 				if(btn.menu){
-					var content = $('.btn-action:eq('+index+')',this.$el).siblings('.dropdown-menu');
+					var content = $('.btn-action:eq('+index+')',that.$el).siblings('.dropdown-menu');
 					btn.menu.setElement(content).render();
 				}
 			});

@@ -9,7 +9,8 @@ define(['./context','backbone','underscore','./window','./panel','./menuButton',
 		menubutton:{
 			buttonCls:'btn-xs',
 			buttons:[{
-				name:'测试一号BUTTON',
+				name:'新增',
+				icon:'glyphicon glyphicon-plus',
 				cls:'btn-primary',
 				menu:new Menu({
 					template:$('#mm',$temples)[0].outerHTML,
@@ -19,10 +20,12 @@ define(['./context','backbone','underscore','./window','./panel','./menuButton',
 				})
 			},
 			{
-				name:'测试二号BUTTON',
+				name:'删除',
+				icon:'glyphicon glyphicon-pencil',
+				cls:'btn-info'/*,
 				menu:new Menu({
 					template:$('#mm1',$temples)[0].outerHTML
-				})
+				})*/
 			}]
 		}
 	};
@@ -43,20 +46,23 @@ define(['./context','backbone','underscore','./window','./panel','./menuButton',
 			Window.prototype.initialize.call(this,_.extend(nomodify,defaults,config));
 			this.context.mbConfig = _.extend({},defaults.menubutton,config.menubutton)
 			//hasMenu
-			if(this.context.mbConfig){
+			if(!_.isEmpty(this.context.mbConfig)){
 				this.menubutton = new Menubutton(this.context.mbConfig);
 			}
 		},
 		render:function(){
 			Window.prototype.render.apply(this,arguments);
-			//dialog-toolbar
-			if(this.menubutton){
-				var $header = this.exec('header');
-				$header.after('<div class="dialog-toolbar"></div>');
-				var $tools = $('.dialog-toolbar',this.exec('window'));
-				var $body =  this.exec('body');
-				this.menubutton.setElement($tools).render();
-				this._resize();
+			if(!this.initStatue){
+				//dialog-toolbar
+				if(this.menubutton){
+					var $header = this.exec('header');
+					$header.after('<div class="dialog-toolbar"></div>');
+					var $tools = $('.dialog-toolbar',this.exec('window'));
+					var $body =  this.exec('body');
+					this.menubutton.setElement($tools).render();
+					this._resize();
+				}
+				this.initStatue = true;
 			}
 		},
 		//panel resize hander
@@ -65,9 +71,13 @@ define(['./context','backbone','underscore','./window','./panel','./menuButton',
 				var $header = this.exec('header');
 				var $tools = $('.dialog-toolbar',this.exec('window'));
 				var $body =  this.exec('body');
-				console.log($body._outerHeight());
 				$body._outerHeight($body._outerHeight() - $tools._outerHeight());
-				console.log($body._outerHeight());
+				
+				var shadow=$.data(this.contentDom.get(0),'window').shadow;
+				if(shadow){
+				var cc= this._window;
+					shadow.css({width:cc._outerWidth(),height:cc._outerHeight()});
+				}
 			}
 		}
 	});
