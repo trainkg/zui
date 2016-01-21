@@ -162,6 +162,12 @@ html, body {
 .f-fwb{font-weight:bold;}
 .f-tal{text-align:left;}
 .f-tac{text-align:center;}
+.f-line14{line-height: 14px}
+.f-line16{line-height: 16px}
+.f-line18{line-height: 18px}
+.f-line20{line-height: 20px}
+.f-line22{line-height: 22px}
+.f-line24{line-height: 24px}
 .f-tar{text-align:right;}
 .f-taj{text-align:justify;text-justify:inter-ideograph;}
 .f-vam,.f-vama *{vertical-align:middle;}
