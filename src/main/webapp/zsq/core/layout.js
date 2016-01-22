@@ -43,7 +43,7 @@ define(['jquery','backbone','underscore',
 			}
 		},
 		resizeConfig:null, 	//JSON
-		resizeWin:true		//support change window size
+		resizeWin:false		//support change window size
   };
     
    /*------BACKBONE-----*/
