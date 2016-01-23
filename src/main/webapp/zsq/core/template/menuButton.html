@@ -3,13 +3,17 @@
   	 <%if(button.menu || button.hasMenu){%>
   	 <div class="btn-group" role="group">
 	    <%if(button.split){%>
-	    <a href="javascript:void(0);" class="btn <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
+	    <a href="javascript:void(0);" class="btn <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%>">
+	    	<%if(button.icon){%><span class="<%=button.icon%>"></span><%}%> 
+	    	<%=button.name%>	
+	    </a>
 		<a href="javascript:void(0);" data-index='<%=index%>' class="btn-action btn <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
 		    <span class="caret"></span>
 		    <span class="sr-only">Toggle Dropdown</span>
 		</a>
 	    <%}else{%>
 	    <a data-index='<%=index%>' href="<%=_.isString(button.fn)?button.fn:'javascript:void(0)'%>" class="btn btn-action <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%> dropdown-toggle">
+	    	<%if(button.icon){%><span class="<%=button.icon%>"></span><%}%>
 	    	<%=button.name%>
 	        <span class="caret"></span>
 	    </a>
@@ -19,7 +23,10 @@
 	    </div>
 	 </div>
   	 <%}else{%>
-  	 <a href="<%=_.isString(button.fn)?button.fn:'javascript:void(0);'%>" data-index='<%=index%>' class="btn btn-action <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%>"><%=button.name%></a>
+  	 <a href="<%=_.isString(button.fn)?button.fn:'javascript:void(0);'%>" data-index='<%=index%>' class="btn btn-action <%=buttonCls%> <%=button.cls?button.cls:'btn-default'%>">
+  	 	<%if(button.icon){%><span class="<%=button.icon%>"></span><%}%>
+  	 	<%=button.name%>
+  	 </a>
   	 <%}%>
   <%})%>
 </div>

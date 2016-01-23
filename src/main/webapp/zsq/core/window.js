@@ -8,7 +8,8 @@ define(['./context','backbone','underscore','css!./css/window','jqwindow'],funct
 		template:null,
 		width:600,
 	    height:400,
-	    modal:false,
+	    modal:true,
+	    //inline:true,
 	    shadow:true,
 	    collapsible:false,
 	    minimizable:false,
@@ -29,9 +30,11 @@ define(['./context','backbone','underscore','css!./css/window','jqwindow'],funct
 				var content = this.$el;
 				if(this._template){
 					content.html(this._template(this.context));
-					this._window = content.children(':first').window();
+					this.contentDom = content.children(':first');
+					this._window = this.contentDom.window();
 				}else{
-					this._window = content.window(this.context); 
+					this.contentDom = content;
+					this._window = this.contentDom.window(this.context); 
 				}
 			}else{
 				this._window.window('open');
