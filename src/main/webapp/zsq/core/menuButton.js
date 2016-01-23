@@ -61,7 +61,7 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 					_wapperMenu(menu);
 				}
 			})
-			}`
+			}
 		},
 		_wapperMenu:function(menu){
 			menu.afterClick = function(){

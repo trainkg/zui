@@ -23,7 +23,7 @@ define(['backbone','underscore','css!./css/menu.css','jquery.menu'],function(Bac
 			var opClick = this.context.onClick;
 			if(opClick){
 				var ops = {
-					onClick:function(){opClick.apply(that,arguments);that.hide();that.afterClick()},
+					onClick:function(){opClick.apply(that,arguments);that.hide();that.afterClick()}
 				}
 				_.extend(this.context,ops);
 			}
