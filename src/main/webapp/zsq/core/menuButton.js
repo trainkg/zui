@@ -53,12 +53,12 @@ define(['backbone','underscore','text!./template/menuButton.html'],function(Back
 		wapperMenu:function(menu){
 			var that = this;
 			if(menu){
-				_wapperMenu(menu);
+				that._wapperMenu(menu);
 			}else{
 			_.each(that.context.buttons,function(button,index){
 				menu = button.menu;
 				if(menu){
-					_wapperMenu(menu);
+					that._wapperMenu(menu);
 				}
 			})
 			}

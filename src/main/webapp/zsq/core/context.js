@@ -66,7 +66,10 @@
             var login = this.loginInfo
             
             $('body').dialog({id:'bjui-login', url:login.url, title:login.title, width:login.width, height:login.height, mask:login.mask})
-        }
+        },
+        modal:{},
+        view:{},
+        router:{}
         /*init: function(options) {
             var op = $.extend({}, options)
             
